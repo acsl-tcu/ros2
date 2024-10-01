@@ -1,0 +1,14 @@
+#! /usr/bin/bash
+
+if [ ${HOSTNAME:0:1} == "D" ]; then
+  cd /root/ros2_ws/
+  source install/setup.bash
+  if [ $# -ge 1 ]; then
+    com=$@
+  else
+    com=list
+  fi
+  ros2 topic $com
+else
+  COMPOSE_PROJECT_NAME=${PROJECT}_console docker compose exec common /common/scripts/rtopic $@
+fi

@@ -1,0 +1,5 @@
+#! /usr/bin/bash
+. /opt/ros/${ROS_DISTRO}/setup.bash
+
+cd /root/ros2_ws/
+colcon build --symlink-install --packages-select $@

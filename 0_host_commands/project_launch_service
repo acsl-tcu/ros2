@@ -1,0 +1,16 @@
+# Don't touch
+# git での管理用の工夫
+# homedir は setting.sh で実行環境でのホームディレクトリに置換したものをserviceとして登録
+# 詳細は setup.sh 参照
+
+[Unit]
+Description=ros_launcher
+After=syslog.target
+
+[Service]
+Type=exec
+WorkingDirectory=/homedir/acsl_ros2/1_docker
+ExecStart=/homedir/acsl_ros2/0_host_commands/project_launch.sh
+
+[Install]
+WantedBy = multi-user.target

@@ -1,0 +1,41 @@
+#! /usr/bin/bash
+# arg1 : target container_name,  arg2- (option) : argument for ros node launch
+# Example :
+# dup tokyu debug : run tokyu project in debug mode
+# dup dev : simple up acsl-common:build
+cd ~/acsl_ros2/1_docker
+source ~/acsl_ros2/1_docker/common/scripts/super_echo
+if [ $# -ge 1 ]; then
+  if [ $1 = "all" ]; then
+    ~/acsl_ros2/0_host_commands/project_launch.sh
+  else
+    launch_args=${@:2:($# - 1)}
+    #LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose --env-file envfiles/env.$1 up common -d
+
+    fx86=$(uname -a | grep x86)
+    if [[ -n $fx86 ]]; then
+      TAG=${1%_x86}_x86
+    else
+      TAG=$1
+    fi
+    echo $TAG
+
+    exist_image=$(docker images kasekiguchi/acsl-common:$TAG | grep $TAG)
+    echo $exist_image
+    if [[ -z $exist_image ]]; then
+      TAG=image_${PROJECT}
+    fi
+    echo $launch_args
+    echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_$1.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
+    TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_$1.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
+  fi
+fi
+
+# 記述の意味
+# HOSTNAME=$(hostname | sed -e "s/-/_/g") : HOSTのhostnameをros2 nodeのnamespaceに追加
+# Dockerを表すDという接頭辞を付けたhostnameがnamespaceになる。
+# 例：
+#  node名：fcu
+#  hostname : rp5-2
+# の場合　/Drp5_2/fcu　となる。　hostname内の 「-」 は「_」 に置換される
+# docker 以降はdocker の普通の使い方なのでREADME_DOCKER参照

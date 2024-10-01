@@ -1,0 +1,34 @@
+#! /usr/bin/bash
+
+# #1 : project name
+# #2- : build target packages
+
+source ~/acsl_ros2/1_docker/common/scripts/super_echo
+if [ $# -ge 1 ]; then
+  #packs=${@:1:($# - 1)}
+  packs=$@
+else
+  packs=$(my_packages)
+fi
+
+gecho "build own ros packages"
+#PACK=$(my_packages)
+#LARGS=$PACK ROS_LAUNCH=launch_build.sh TAG=${1} docker compose up common -d
+#echo $TAG
+#TAG=${TAG} dup build $packs
+
+
+exist_image=$(docker images kasekiguchi/acsl-common:image_$PROJECT | grep $PROJECT)
+if [[ -z $exist_image ]]; then
+  recho "create image_$PROJECT image first"
+else
+  dup build $packs
+  # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
+  # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
+
+  dlogs build
+  gecho "docker commit : from build container to image_${PROJECT} tagged image"
+  dcommit build image_${PROJECT}
+  gecho "remove build container"
+  drm build
+fi

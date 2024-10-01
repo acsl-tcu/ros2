@@ -1,0 +1,4 @@
+#! /usr/bin/bash
+
+cd ~/acsl_ros2/1_docker
+COMPOSE_PROJECT_NAME=$1_${PROJECT} docker compose exec common bash

@@ -1,0 +1,13 @@
+#! /usr/bin/bash
+
+if [ ${HOSTNAME:0:1} == "D" ]; then
+  # docker container 内の場合
+  /common/scripts/hostbash "/home/$HOST_USER/acsl_ros2/1_docker/common/scripts/gpull"
+else
+  # SBC 内の場合
+  cd ~/acsl_ros2/
+  git checkout .
+  git pull
+  chmod -R a+x 1_docker/common/
+  chmod -R a+x 0_host_commands/
+fi
