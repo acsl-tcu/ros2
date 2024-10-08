@@ -83,7 +83,7 @@ graph TD;
 cd ~/
 ssh-keygen
 cat ~/.ssh/id_rsa.pub # 表示されたものをgithubのサイトに登録する
-git clone git@github.com:kasekiguchi/acsl_ros2.git
+git clone git@github.com:acsl-tcu/ros2.git
 cd ~/acsl_ros2
 ```
 
