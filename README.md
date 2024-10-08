@@ -69,10 +69,10 @@ graph TD;
 ```
 
 ## setup
-ハードウェアの基本セットアップを行っておく。
+各ハードウェアの基本セットアップを以下からおこなう。
 （imageの設定、dockerの設定まで）
 
-[Raspberry Pi5](hardware_setup/README_raspberry_pi_5.md)
+[Raspberry Pi5](hardware_setup/README_raspberry_pi_5.md)<br>
 [WLS2](hardware_setup/README_WSL2.md)
 
 ### Git clone
