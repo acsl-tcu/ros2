@@ -1,6 +1,6 @@
 # Autonomous control system library for ROS2
 
-高機能機械制御研究室関口班の共通ROS2プログラム<br>
+高機能機械制御研究室の共通ROS2プログラム<br>
 新しい計算機に導入する場合は[setup](#setup)を参照。<br>
 setup後、新しいプロジェクトを作成する場合は[開発の仕方](#開発の仕方)を参照<br>
 既存のプロジェクトに参加する場合は[プロジェクトに参加](#プロジェクトに参加)を参照。<br>
@@ -14,9 +14,6 @@ setup後、新しいプロジェクトを作成する場合は[開発の仕方](
   - [リポジトリ内フォルダ構成](#リポジトリ内フォルダ構成)
   - [システム構成](#システム構成)
   - [setup](#setup)
-    - [OSイメージの設定](#osイメージの設定)
-    - [i2c, spi 有効化](#i2c-spi-有効化)
-    - [docker のインストール](#docker-のインストール)
     - [Git clone](#git-clone)
     - [systemd 登録](#systemd-登録)
   - [Debug用コマンド](#debug用コマンド)
@@ -72,51 +69,11 @@ graph TD;
 ```
 
 ## setup
+ハードウェアの基本セットアップを行っておく。
+（imageの設定、dockerの設定まで）
 
-ここではRaspberry pi 5 用のセットアップについて記載する。
-
-### OSイメージの設定
-
-最新のraspberry pi os (64bit)をインストールし、SSHなどをアクティブにしておく。以下設定例
-ホスト名、ユーザー名は必ず設定すること。
-
-![alt text](.images/image.png)
-![alt text](.images/image-1.png)
-
-### i2c, spi 有効化
-
-raspberry pi のイメージ作成時にはできない設定については起動後追加でおこなう。[GUIの場合](https://projects.raspberrypi.org/en/projects/raspberry-pi-using/9)はメニューのPreferecens> Raspberry Pi Configurationからできる。 以下は[CUIの場合](https://www.raspberrypi.com/documentation/computers/configuration.html)。
-
-```bash
-sudo raspi-config
- > Interface Options > I2C, SPI : enable
- > Performance Options > USB current : disable current limit
- > Enable Boot to Desktop/Scratch > Console Text console, requiring login (default)
- # 最後のはGUIを起動時に立ち上げない設定。自動起動で動くことが確認できたらやっておくと良い
-```
-
-### docker のインストール
-
-RP image install ＝＞ssh でログイン後
-
-基本的に[こちら](https://kinsta.com/jp/blog/install-docker-ubuntu/)と[こちら](https://www.kagoya.jp/howto/cloud/container/dockerubuntu/)に従うが、/etc/apt/sources.list.d/docker.listに設定するサイトがRP用に一部debianを指定している。
-以下まとめ（まとめてコピペで良い）
-
-```bash
-sudo apt update
-sudo apt install -y ca-certificates curl gnupg lsb-release
-sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-# raspbery pi の場合
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-# WSL2の場合
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-sudo usermod -aG docker $USER
-su - ${USER}
-```
+[Raspberry Pi5](hardware_setup/README_raspberry_pi_5.md)
+[WLS2](hardware_setup/README_WSL2.md)
 
 ### Git clone
 
