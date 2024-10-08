@@ -8,8 +8,8 @@
 最新のraspberry pi os (64bit)をインストールし、SSHなどをアクティブにしておく。以下設定例
 ホスト名、ユーザー名は必ず設定すること。
 
-![alt text](.images/image.png)
-![alt text](.images/image-1.png)
+![alt text](../.images/image.png)
+![alt text](../.images/image-1.png)
 
 ## i2c, spi 有効化
 
