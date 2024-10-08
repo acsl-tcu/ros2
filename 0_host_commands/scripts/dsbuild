@@ -12,18 +12,23 @@ gecho "Build image_${PROJECT}"
 echo "##########################################"
 if [ $# -ge 1 ]; then
   ITAG=$1
-  for OTAG in ${@:2:($# - 1)}; do
-    #gecho "Build $OTAG from $ITAG using dockerfile.$OTAG"
-    if [ $OTAG == "build" ]; then
-      dbuild $ITAG $ITAG $OTAG # tagを変更せず上書き
-      ITAG=$ITAG
-    else
-      dbuild $ITAG $OTAG $OTAG
-      ITAG=$OTAG
-    fi
-  done
+  if [ $# -eq 1 ]; then
+    dbuild $1
+  else
+    for OTAG in ${@:2:($# - 1)}; do
+      #gecho "Build $OTAG from $ITAG using dockerfile.$OTAG"
+      if [ $OTAG == "build" ]; then
+        dbuild $ITAG $ITAG $OTAG # tagを変更せず上書き
+        ITAG=$ITAG
+      else
+        dbuild $ITAG $OTAG $OTAG
+        ITAG=$OTAG
+      fi
+    done
+  fi
 else
-  lsit=$(ls ~/acsl_ros2/1_docker/dockerfiles)
-  echo "Possible docker build items : "
-  echo "${list[@]}" | sed -e "s/dockerfile.//g" -e "s/base//" -e "s/build//"
+  dbuild
+  # lsit="$(ls ~/acsl_ros2/1_docker/dockerfiles)"
+  # echo "Possible docker build items : "
+  # ls ~/acsl_ros2/1_docker/dockerfiles | sed -e "s/dockerfile.//g" -e "s/base//" -e "s/build//"
 fi

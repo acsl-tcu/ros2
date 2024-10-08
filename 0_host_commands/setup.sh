@@ -17,7 +17,7 @@ if [ $# -eq 1 ]; then
   # [udev] generate custom.rules
   sudo rm -f /etc/udev/rules.d/90-custom.rules
   cd ~/acsl_ros2/1_docker/common/rules
-  if [[ -z ${PROJECT}.rules ]]; then
+  if [[ -n $(ls | grep ${PROJECT}.rules) ]]; then
     sudo cp -p ${PROJECT}.rules /etc/udev/rules.d/90-custom.rules
   else
     sudo cp -p default.rules /etc/udev/rules.d/90-custom.rules
