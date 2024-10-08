@@ -91,8 +91,10 @@ cd ~/ros2
 ### docker image取得
 プロジェクトに使うimageを取得する。
 ```bash
-docker pull kasekiguchi/acsl-common:"$IMAGE"
-# "$IMAGE" : image_drone, t265, gnss, microros, etc
+PROJECT="$PROJECT"
+IMAGE=image_$PROJECT 
+# IMAGE : image_drone, t265, gnss, microros, etc
+docker pull kasekiguchi/acsl-common:$IMAGE
 ```
 
 ### git branch 切り替え
