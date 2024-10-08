@@ -10,6 +10,9 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   fi
   ros2 node $com
 else
-  dup dev
+  str=$(dup | grep dev)
+  if [[ -z $str ]]; then
+    dup dev
+  fi
   COMPOSE_PROJECT_NAME=dev_${PROJECT} docker compose exec common /common/scripts/rnode $@
 fi
