@@ -3,7 +3,7 @@
 # #1 : project name
 # #2- : build target packages
 
-source ~/acsl_ros2/1_docker/common/scripts/super_echo
+source ~/ros2/1_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   #packs=${@:1:($# - 1)}
   packs=$@
@@ -16,7 +16,6 @@ gecho "build own ros packages"
 #LARGS=$PACK ROS_LAUNCH=launch_build.sh TAG=${1} docker compose up common -d
 #echo $TAG
 #TAG=${TAG} dup build $packs
-
 
 exist_image=$(docker images kasekiguchi/acsl-common:image_$PROJECT | grep $PROJECT)
 if [[ -z $exist_image ]]; then

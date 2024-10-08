@@ -5,5 +5,5 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   cd /root/ros2_ws
 else
   # SBC 内の場合
-  cd /home/$USER/acsl_ros2/1_docker
+  cd /home/$USER/ros2/1_docker
 fi

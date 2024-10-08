@@ -98,14 +98,14 @@ docker pull kasekiguchi/acsl-common:"$IMAGE"
 ### git branch 切り替え
 必要に応じてbranchを切り替える
 ```bash
-cd ~/acsl_ros2
+cd ~/ros2
 git switch "$BRANCH"
 ```
 
 ### systemd 登録
 
 ```bash
-cd ~/acsl_ros2/0_host_commands
+cd ~/ros2/0_host_commands
 bash setup.sh "$PROJECT"
 source ~/.bashrc
 # "$PROJECT" : drone, bos, bos_robot, whill, leg-wheel, rover, turtlebot
@@ -238,22 +238,22 @@ devコンテナで機能することが確認できたらdockerfileに追加し�
 
 ```bash
 # dockerfileに追加　エディタは何でも良い
-vim ~/acsl_ros2/1_docker/dockerfiles/dockerfile."$project"
+vim ~/ros2/1_docker/dockerfiles/dockerfile."$project"
 # image_"$project" イメージを作成
 docker compose build "$project" (--no-cache)
 ```
 
 ## 実行時Tips
 
-LOCALにROS2を入れ、acsl_ros2をcloneしておく。
+LOCALにROS2を入れ、ros2をcloneしておく。
 
 aptで python3-pandas をインストールしておく。
 
 ```bash
 # pklファイルダウンロード
-~/acsl_ros2/0_host_commands/scripts/get_data 73
+~/ros2/0_host_commands/scripts/get_data 73
 # sample.pyでfigure.pdf作成
-python3 ~/acsl_ros2/2_ros_packages/acs/acs/Plotter/sample.py
+python3 ~/ros2/2_ros_packages/acs/acs/Plotter/sample.py
 # . を指定して実行すると currentフォルダにfigure.pdfができる。
 cp figure.pdf ~/Downloads/
 ```

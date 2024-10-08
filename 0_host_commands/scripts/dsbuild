@@ -5,7 +5,7 @@
 # output : kasekiguchi/acsl_common:"$EXT"
 
 # sequential build for docker
-source ~/acsl_ros2/1_docker/common/scripts/super_echo
+source ~/ros2/1_docker/common/scripts/super_echo
 
 echo "##########################################"
 gecho "Build image_${PROJECT}"
@@ -28,7 +28,7 @@ if [ $# -ge 1 ]; then
   fi
 else
   dbuild
-  # lsit="$(ls ~/acsl_ros2/1_docker/dockerfiles)"
+  # lsit="$(ls ~/ros2/1_docker/dockerfiles)"
   # echo "Possible docker build items : "
-  # ls ~/acsl_ros2/1_docker/dockerfiles | sed -e "s/dockerfile.//g" -e "s/base//" -e "s/build//"
+  # ls ~/ros2/1_docker/dockerfiles | sed -e "s/dockerfile.//g" -e "s/base//" -e "s/build//"
 fi

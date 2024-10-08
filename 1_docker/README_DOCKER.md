@@ -39,7 +39,7 @@ Refer to [README_SYSTEM.md](../README_SYSTEM.md) for the common terminologies.
 以下のコマンドでdevコンテナを作り、その中に入れる
 
  ```bash:bash
-  cd ~/acsl_ros2/docker/
+  cd ~/ros2/docker/
   docker compose up common -d
   docker compose exec common bash
  ```
@@ -205,9 +205,9 @@ docker container prune
 ```
 /
 |- dev                           : HOST:/dev
-|- common                        : HOST:~/acsl_ros2/docker/common
+|- common                        : HOST:~/ros2/docker/common
 |- root/ros2_ws/src/             : ROS2パッケージフォルダ（realsenseなど他のgitプロジェクトはこちらに入っている）
-  |- ros_packages                : HOST:~/acsl_ros2/ros_packages
+  |- ros_packages                : HOST:~/ros2/ros_packages
 |- root/.vscode-server           : 名前付きvolume
 ```
 

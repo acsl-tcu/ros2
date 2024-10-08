@@ -40,7 +40,7 @@ ROSパッケージの詳細
 * 個別のパッケージの起動（HOSTから）
 
 ```bash
-cd acsl_ros2/docker
+cd ros2/docker
 docker compose --env-file <envfile> up common -d
 # <envfile> : パッケージに対応したenvfile
 ```
@@ -217,8 +217,8 @@ deprecate
 ```bash
 ros2 launch realsense2_camera rs_launch.py #t265の起動
 ros2 launch acs mocap.launch.py
-src/acsl_ros2/mavlink_driver/mavlink_driver/main.py # fcumode(matlabの時は使わない)
-src/acsl_ros2/acs/acs/ROSnode/Estimator/main.py
+src/ros2/mavlink_driver/mavlink_driver/main.py # fcumode(matlabの時は使わない)
+src/ros2/acs/acs/ROSnode/Estimator/main.py
 
 #ros2bag 記録コマンド
 cd ros2bag_files

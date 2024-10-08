@@ -96,7 +96,7 @@
   - Docker imageの名前は自由に選べるがコンテナ名と一致させるとことにする。
 - これはなんのため？
 @ docker-compose.yml
- ./../../acsl_ros2:/root/ros2_ws/src/acsl_ros2 # acsl_ros2をコンテナで使えるようにする
+ ./../../ros2:/root/ros2_ws/src/ros2 # ros2をコンテナで使えるようにする
 ROSパッケージを参照するだけならrosフォルダ化し、このフォルダをバインドでOK
 docker内を別途バインドする必要があるのか確認
 

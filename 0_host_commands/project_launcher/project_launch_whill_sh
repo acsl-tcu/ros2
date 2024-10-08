@@ -8,7 +8,7 @@ else
   sed -i "s/ROS_DOMAIN_ID=.*\$/ROS_DOMAIN_ID=$ROS_DOMAIN_ID/" /homedir/.bashrc
 fi
 #echo "export ROS_DOMAIN_ID=$ROS_DOMAIN_ID" >>/homedir/.bashrc
-cd /homedir/acsl_ros2/1_docker
+cd /homedir/ros2/1_docker
 ../0_host_commands/scripts/dup rtk_gnss
 ../0_host_commands/scripts/dup whill
 ../0_host_commands/scripts/dup velodyne run
