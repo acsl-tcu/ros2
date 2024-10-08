@@ -10,5 +10,9 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   fi
   ros2 topic $com
 else
-  COMPOSE_PROJECT_NAME=${PROJECT}_console docker compose exec common /common/scripts/rtopic $@
+  str=$(dps | grep dev)
+  if [[ -z $str ]]; then
+    dup dev
+  fi
+  COMPOSE_PROJECT_NAME=dev_${PROJECT} docker compose exec common /common/scripts/rtopic $@
 fi
