@@ -26,10 +26,6 @@ find_package(ament_cmake REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
-set(action_files
-  "action/Console.action"
-  "action/Switchbot.action"
-)
 set(srv_files
   "srv/IsReady.srv"
 )

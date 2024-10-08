@@ -105,10 +105,11 @@ git switch "$BRANCH"
 ### systemd 登録
 
 ```bash
-cd ~/ros2/0_host_commands
-bash setup.sh "$PROJECT"
-source ~/.bashrc
+PROJECT="$PROJECT"
 # "$PROJECT" : drone, bos, bos_robot, whill, leg-wheel, rover, turtlebot
+cd ~/ros2/0_host_commands
+bash setup.sh $PROJECT
+source ~/.bashrc
 (sudo reboot )
 dps # 初回でdocker imageを取得できていない場合は表示されるようになるまで時間がかかる
 dlogs "$CONTAINER"
@@ -180,7 +181,12 @@ drmi <image_name>
 プロジェクトは**一つの計算機**上で実行するコンテナ群を管理するもの
 
 1. vim 0_host_commands/project_launch_"$PROJECT"_sh<br>
-内容はPROJECT名、ROS_DOMAIN_ID
+内容はPROJECT名、ROS_DOMAIN_ID。
+```bash
+# sample project_launch_whill_sh
+export PROJECT=whill
+export ROS_DOMAIN_ID=11
+```
 2. bash setup.sh "$PROEJCT" <br>
 systemdへproject_launch_"$PROJECT"_shを登録。ROS_DOMAIN_ID,　関連コマンド群のパスを.bashrcに登録
 3. source ~/.bashrc <br>
