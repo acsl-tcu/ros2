@@ -6,7 +6,7 @@
 
 RP image install ＝＞ssh でログイン後
 
-基本的に[こちら](https://kinsta.com/jp/blog/install-docker-ubuntu/)と[こちら](https://www.kagoya.jp/howto/cloud/container/dockerubuntu/)に従うが、/etc/apt/sources.list.d/docker.listに設定するサイトがRP用に一部debianを指定している。
+基本的に[こちら](https://kinsta.com/jp/blog/install-docker-ubuntu/)と[こちら](https://www.kagoya.jp/howto/cloud/container/dockerubuntu/)に従う。
 以下まとめ（まとめてコピペで良い）
 
 ```bash
