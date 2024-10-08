@@ -81,10 +81,8 @@ graph TD;
 
 ```bash
 cd ~/
-ssh-keygen
-cat ~/.ssh/id_rsa.pub # 表示されたものをgithubのサイトに登録する
-git clone git@github.com:acsl-tcu/ros2.git
-cd ~/acsl_ros2
+git clone https://github.com/acsl-tcu/ros2.git
+cd ~/ros2
 ```
 
 ## プロジェクトに参加
