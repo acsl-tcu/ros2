@@ -20,9 +20,9 @@ SHELL [ "/bin/bash","-c" ]
 
 # velodyne のドライバインストール 
 # 
-RUN mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src \
-  && apt update \  
-  && apt install -y libpcl-dev libyaml-cpp-dev libpcap-dev libpcap0.8 libpcap0.8-dev ros-${ROS_DISTRO}-velodyne 
+# RUN mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src \
+#   && apt update \  
+#   && apt install -y libpcl-dev libyaml-cpp-dev libpcap-dev libpcap0.8 libpcap0.8-dev ros-${ROS_DISTRO}-velodyne 
 
 # velodyneのドライバをソースからインストールする場合
 RUN cd ~/ros2_ws/src \
