@@ -26,10 +26,11 @@ RUN mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src \
 
 # velodyneのドライバをソースからインストールする場合
 # RUN apt update \
-# && apt install -y libpcl-dev libyaml-cpp-dev libpcap-dev \
-# && git clone --depth 1 https://github.com/ros-drivers/velodyne.git -b ros2 \
-# && git clone --depth 1 https://github.com/ros/angles.git -b ros2 \
-# && git clone --depth 1 https://github.com/ros/diagnostics.git -b ${ROS_DISTRO} 
+#   && apt install -y libpcl-dev libyaml-cpp-dev libpcap-dev \
+#   && git clone --depth 1 https://github.com/ros-drivers/velodyne.git -b ${ROS_DISTRO}-devel \
+#   && git clone --depth 1 https://github.com/ros/angles.git -b ros2 \
+#   && git clone --depth 1 https://github.com/ros/diagnostics.git -b ros2-${ROS_DISTRO} \
+#   && colcon build --symlink-install --cmake-args -Wno-unused-variable -Wno-class-memaccess
 
 
 # RUN cd ~/ros2_ws/src \

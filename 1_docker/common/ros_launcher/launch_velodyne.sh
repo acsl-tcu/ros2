@@ -10,7 +10,7 @@ case $1 in
   ;;
 #ROS2のPCL2形式に変換するノードのようです。
 "convert")
-  $(echo "exec ros2 launch velodyne_pointcloud velodyne_convert_node-VLP16-launch.py")
+  $(echo "exec ros2 launch velodyne_pointcloud velodyne_transform_node-VLP16-launch.py")
   ;;
 "rviz2")
   $(echo "exec rviz2")
