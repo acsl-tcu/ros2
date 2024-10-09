@@ -27,7 +27,7 @@ if [ $# -ge 1 ]; then
     fi
     echo $launch_args
     # CONTAINER_NAME=$1
-    echo "TAG=$TAG COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_$1.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
+    echo "TAG=$TAG aaaa COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_$1.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
     TAG=$TAG COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_$1.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
   fi
 fi
