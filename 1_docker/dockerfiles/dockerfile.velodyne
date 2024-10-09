@@ -29,7 +29,7 @@ RUN mkdir -p ~/ros2_ws/src && cd ~/ros2_ws/src \
   && apt update \
   && apt install -y libpcl-dev libyaml-cpp-dev libpcap-dev \
   && git clone --depth 1 https://github.com/ros-drivers/velodyne.git -b ${ROS_DISTRO}-devel \
-  && git clone --depth 1 https://github.com/ros/angles.git -b ros2 \
+  && git clone --depth 1 https://github.com/ros/angles.git -b ${ROS_DISTRO}-devel \
   && git clone --depth 1 https://github.com/ros/diagnostics.git -b ros2-${ROS_DISTRO} 
 RUN cd ~/ros2_ws \
   && colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -Wno-unused-variable -Wno-class-memaccess
