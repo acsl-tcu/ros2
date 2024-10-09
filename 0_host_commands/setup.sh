@@ -1,7 +1,7 @@
 #! /usr/bin/bash +x
 
 # ros node (＝　コンテナ)　の立ち上げ
-if [ $# -eq 1 ]; then
+if [ $# -ge 1 ]; then
   export PROJECT=$1
   chmod -R a+x /home/$USER/ros2/1_docker/common/scripts
   export PATH=$PATH:/home/$USER/ros2/1_docker/common/scripts
@@ -10,6 +10,12 @@ if [ $# -eq 1 ]; then
   set_bashrc "export PATH" "$PATH:/home/$USER/ros2/1_docker/common/scripts:/home/$USER/ros2/0_host_commands/scripts"
   set_bashrc "alias home" "'source home.sh'"
   set_bashrc "export PROJECT" $PROJECT
+  if [ $# -eq 2 ]; then
+    RID=$2
+  else
+    RID=$(cat /home/$USER/ros2/0_host_commands/project_launcher/ros2_id_list | grep $PROJECT | awk '{print $NF}')
+  fi
+  set_bashrc "export ROS_DOMAIN_ID" $RID
 
   echo "Do following command"
   gecho "source ~/.bashrc"

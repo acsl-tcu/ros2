@@ -1,12 +1,13 @@
 #! /usr/bin/bash +x
 
-export PROJECT=whill
-export ROS_DOMAIN_ID=11
-if [[ -z $(cat /homedir/.bashrc | grep ROS_DOMAIN_ID) ]]; then
-  echo "export ROS_DOMAIN_ID=$ROS_DOMAIN_ID" >>/homedir/.bashrc
-else
-  sed -i "s/ROS_DOMAIN_ID=.*\$/ROS_DOMAIN_ID=$ROS_DOMAIN_ID/" /homedir/.bashrc
-fi
+source /homedir/.bashrc
+# export PROJECT=whill
+# export ROS_DOMAIN_ID=11
+# if [[ -z $(cat /homedir/.bashrc | grep ROS_DOMAIN_ID) ]]; then
+#   echo "export ROS_DOMAIN_ID=$ROS_DOMAIN_ID" >>/homedir/.bashrc
+# else
+#   sed -i "s/ROS_DOMAIN_ID=.*\$/ROS_DOMAIN_ID=$ROS_DOMAIN_ID/" /homedir/.bashrc
+# fi
 #echo "export ROS_DOMAIN_ID=$ROS_DOMAIN_ID" >>/homedir/.bashrc
 cd /homedir/ros2/1_docker
 ../0_host_commands/scripts/dup rtk_gnss
