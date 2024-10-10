@@ -6,8 +6,8 @@
 # https://qiita.com/miriwo/items/e829f5a78314e0878f1b
 case $1 in
 "run")
-  $(echo -e "ros2 run velodyne_driver velodyne_driver_node --ros-args -p device_ip:='192.168.1.22' -p model:='VLP16' -p rpm:=1200.0\n ros2 launch velodyne_pointcloud velodyne_transform_node-VLP16-launch.py" | xargs -P 2 -I @ bash -c "exec @")
-  #  $(echo "exec ros2 run velodyne_driver velodyne_driver_node --ros-args -p device_ip:='192.168.1.22' -p model:='VLP16' -p rpm:=1200.0")
+  $(echo -e "ros2 run velodyne_driver velodyne_driver_node --ros-args -p device_ip:='192.168.1.201' -p model:='VLP16' -p rpm:=1200.0\n ros2 launch velodyne_pointcloud velodyne_transform_node-VLP16-launch.py" | xargs -P 2 -I @ bash -c "exec @")
+  #  $(echo "exec ros2 run velodyne_driver velodyne_driver_node --ros-args -p device_ip:='192.168.1.201' -p model:='VLP16' -p rpm:=1200.0")
   ;;
 #ROS2のPCL2形式に変換するノードのようです。
 "convert")
