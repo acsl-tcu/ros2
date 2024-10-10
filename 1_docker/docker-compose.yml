@@ -41,7 +41,7 @@ services:
     environment:
       # set environment variable on docker 
       - PROJECT=${PROJECT}
-      - CONTAINER_NAME=${CONTAINER_NAME:-dev}
+      - CONTAINER_NAME=${COMPOSE_PROJECT_NAME:-dev} #${CONTAINER_NAME:-dev}
       - TAG=${TAG:-${PROJECT}_build}
       - HOST_USER=$LOGNAME # deprecate 
       - ROS_DOMAIN_ID=${ROS_DOMAIN_ID} # set project unique id
