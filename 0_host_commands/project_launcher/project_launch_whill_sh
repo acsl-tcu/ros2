@@ -1,6 +1,8 @@
 #! /usr/bin/bash +x
 
 source /homedir/.bashrc
+echo $PROJECT
+echo $ROS_DOMAIN_ID
 # export PROJECT=whill
 # export ROS_DOMAIN_ID=11
 # if [[ -z $(cat /homedir/.bashrc | grep ROS_DOMAIN_ID) ]]; then
