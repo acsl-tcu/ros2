@@ -5,10 +5,10 @@ if [ $# -ge 1 ]; then
   export PROJECT=$1
   chmod -R a+x /home/$USER/ros2/0_host_commands/scripts
   chmod -R a+x /home/$USER/ros2/1_docker/common/scripts
-  if [[ -z $(cat ~/.bashrc | grep PATHORG) ]]; then
-    set_bashrc "export PATHORG" $PATH
+  if [[ -z $(cat ~/.bashrc | grep ORGPATH) ]]; then
+    set_bashrc "export ORGPATH" $PATH
   else
-    PATH=$PATHORG
+    PATH=$ORGPATH
   fi
   export PATH=$PATH:/home/$USER/ros2/1_docker/common/scripts:/home/$USER/ros2/0_host_commands/scripts
   source ~/ros2/1_docker/common/scripts/super_echo
