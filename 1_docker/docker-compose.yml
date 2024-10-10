@@ -18,14 +18,14 @@ services:
     # [up]
     # HOSTNAME : host pc name
     # CONTAINER_NAME : output container name
-    # ROS_LAUNCH : shell script name containing ros2 start command in the contaier
+    # ROS_LAUNCH : shell script name containing ros2 start command in the container
     # LARGS : arguments to the ROS_LAUNCH file
     # ID : ROS_DOMAIN_ID
     tty: true
     privileged: true # privileged mode
     image: kasekiguchi/acsl-common:${TAG:-base}
     hostname: D${HOSTNAME:-}
-    container_name: ${CONTAINER_NAME:-dev}
+    container_name: ${COMPOSE_PROJECT_NAME:-dev} #${CONTAINER_NAME:-dev}
     entrypoint:
       [
         "/usr/local/bin/dumb-init", # for quick stop of the container
