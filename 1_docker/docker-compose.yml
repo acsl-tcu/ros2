@@ -25,7 +25,7 @@ services:
     privileged: true # privileged mode
     image: kasekiguchi/acsl-common:${TAG:-base}
     hostname: D${HOSTNAME:-}
-    container_name: ${COMPOSE_PROJECT_NAME:-dev} #${CONTAINER_NAME:-dev}
+    container_name: ${CONTAINER_NAME:-dev}
     entrypoint:
       [
         "/usr/local/bin/dumb-init", # for quick stop of the container
