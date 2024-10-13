@@ -11,21 +11,13 @@ if [ $# -ge 1 ]; then
   chmod -R a+x $SCRIPT_DIR/../1_docker/common/scripts
 
   if [[ -z $(cat ~/.bashrc | grep ORGPATH) ]]; then
-    echo "1"
     $SCRIPT_DIR/scripts/set_bashrc "export ORGPATH" $PATH
   else
     source ~/.bashrc
     cat ~/.bashrc
-    echo "2"
     export PATH="$ORGPATH"
-    echo $ORGPATH
   fi
-  # echo $SCRIPT_DIR
-  echo "========================="
-  echo $PATH
-  echo "--------------------"
   export PATH="$PATH:$SCRIPT_DIR/../1_docker/common/scripts:$SCRIPT_DIR/scripts"
-  echo $PATH
   source $SCRIPT_DIR/../1_docker/common/scripts/super_echo
   set_bashrc "source $SCRIPT_DIR/../1_docker/common/scripts/super_echo"
   set_bashrc "export PATH" $PATH
@@ -70,6 +62,7 @@ if [ $# -ge 1 ]; then
   sudo systemctl enable project_launch
   sudo systemctl start project_launch
 
+  bash
 # sudo systemctl stop project_launch
 else
   source $SCRIPT_DIR/../1_docker/common/scripts/super_echo
