@@ -17,14 +17,14 @@ if [ $# -ge 1 ]; then
     source ~/.bashrc
     cat ~/.bashrc
     echo "2"
-    export PATH=$ORGPATH
+    export PATH="$ORGPATH"
     echo $ORGPATH
   fi
   # echo $SCRIPT_DIR
   echo "========================="
   echo $PATH
   echo "--------------------"
-  export PATH=$PATH:$SCRIPT_DIR/../1_docker/common/scripts:$SCRIPT_DIR/scripts
+  export PATH="$PATH:$SCRIPT_DIR/../1_docker/common/scripts:$SCRIPT_DIR/scripts"
   echo $PATH
   source $SCRIPT_DIR/../1_docker/common/scripts/super_echo
   set_bashrc "source $SCRIPT_DIR/../1_docker/common/scripts/super_echo"
