@@ -14,6 +14,7 @@ if [ $# -ge 1 ]; then
     echo "1"
     $SCRIPT_DIR/scripts/set_bashrc "export ORGPATH" $PATH
   else
+    source ~/.bashrc
     echo "2"
     PATH=$ORGPATH
   fi
