@@ -1,25 +1,32 @@
 #! /usr/bin/bash +x
 
+SCRIPT_DIR=$(
+  cd $(dirname $0)
+  pwd
+)
 # ros node (＝　コンテナ)　の立ち上げ
 if [ $# -ge 1 ]; then
   export PROJECT=$1
-  chmod -R a+x /home/$USER/ros2/0_host_commands/scripts
-  chmod -R a+x /home/$USER/ros2/1_docker/common/scripts
+  chmod -R a+x $SCRIPT_DIR/scripts
+  chmod -R a+x $SCRIPT_DIR/../1_docker/common/scripts
   if [[ -z $(cat ~/.bashrc | grep ORGPATH) ]]; then
+    echo "1"
     set_bashrc "export ORGPATH" $PATH
   else
+    echo "2"
     PATH=$ORGPATH
   fi
-  export PATH=$PATH:/home/$USER/ros2/1_docker/common/scripts:/home/$USER/ros2/0_host_commands/scripts
-  source ~/ros2/1_docker/common/scripts/super_echo
-  set_bashrc "source ~/ros2/1_docker/common/scripts/super_echo"
+  # echo $SCRIPT_DIR
+  export PATH=$PATH:$SCRIPT_DIR/../1_docker/common/scripts:$SCRIPT_DIR/scripts
+  source $SCRIPT_DIR/../1_docker/common/scripts/super_echo
+  set_bashrc "source $SCRIPT_DIR/../1_docker/common/scripts/super_echo"
   set_bashrc "export PATH" $PATH
   set_bashrc "alias home" "'source home.sh'"
   set_bashrc "export PROJECT" $PROJECT
   if [ $# -eq 2 ]; then
     RID=$2
   else
-    RID=$(cat /home/$USER/ros2/0_host_commands/project_launcher/ros2_id_list | grep $PROJECT | awk '{print $NF}')
+    RID=$(cat $SCRIPT_DIR/project_launcher/ros2_id_list | grep $PROJECT | awk '{print $NF}')
   fi
   set_bashrc "export ROS_DOMAIN_ID" $RID
 
@@ -28,7 +35,7 @@ if [ $# -ge 1 ]; then
 
   # [udev] generate custom.rules
   sudo rm -f /etc/udev/rules.d/90-custom.rules
-  cd ~/ros2/1_docker/common/rules
+  cd $SCRIPT_DIR/../1_docker/common/rules
   if [[ -n $(ls | grep ${PROJECT}.rules) ]]; then
     sudo cp -p ${PROJECT}.rules /etc/udev/rules.d/90-custom.rules
   else
@@ -38,7 +45,7 @@ if [ $# -ge 1 ]; then
   sudo udevadm trigger
 
   # [systemd] generate project_launch.service and project_launch.sh
-  cd ~/ros2/0_host_commands
+  cd $SCRIPT_DIR
   # 注意：systemd は rootで実行されるので ~ が使えないため、sedでフルパスを指定
   sed -e "s|/homedir|$HOME|g" project_launch_service >project_launch.service
 
@@ -57,6 +64,6 @@ if [ $# -ge 1 ]; then
 
 # sudo systemctl stop project_launch
 else
-  source ~/ros2/1_docker/common/scripts/super_echo
+  source $SCRIPT_DIR/../1_docker/common/scripts/super_echo
   recho "Require PROJECT name"
 fi
