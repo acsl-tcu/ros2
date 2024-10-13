@@ -16,7 +16,7 @@ if [ $# -ge 1 ]; then
   else
     source ~/.bashrc
     echo "2"
-    PATH=$ORGPATH
+    export PATH=$ORGPATH
   fi
   # echo $SCRIPT_DIR
   echo "========================="
