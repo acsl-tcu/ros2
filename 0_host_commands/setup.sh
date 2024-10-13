@@ -9,9 +9,10 @@ if [ $# -ge 1 ]; then
   export PROJECT=$1
   chmod -R a+x $SCRIPT_DIR/scripts
   chmod -R a+x $SCRIPT_DIR/../1_docker/common/scripts
+
   if [[ -z $(cat ~/.bashrc | grep ORGPATH) ]]; then
     echo "1"
-    set_bashrc "export ORGPATH" $PATH
+    $SCRIPT_DIR/scripts/set_bashrc "export ORGPATH" $PATH
   else
     echo "2"
     PATH=$ORGPATH
