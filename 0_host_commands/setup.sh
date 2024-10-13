@@ -19,6 +19,7 @@ if [ $# -ge 1 ]; then
   fi
   # echo $SCRIPT_DIR
   export PATH=$PATH:$SCRIPT_DIR/../1_docker/common/scripts:$SCRIPT_DIR/scripts
+  echo $PATH
   source $SCRIPT_DIR/../1_docker/common/scripts/super_echo
   set_bashrc "source $SCRIPT_DIR/../1_docker/common/scripts/super_echo"
   set_bashrc "export PATH" $PATH

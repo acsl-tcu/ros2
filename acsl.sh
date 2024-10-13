@@ -6,10 +6,16 @@ function initialize_project() {
     PROJECT : $1
     ROS DOMAIN ID : $2
 _EOT_
-  mkdir .acsl
-  cd .acsl
-  git clone https://github.com/acsl-tcu/ros2.git
-  cd ros2/0_host_commands
+  if [ -d ./.acsl ]; then
+    source ~/.bashrc
+    cd .acsl/ros2/0_host_commands
+  else
+    echo "create .acsl folder"
+    mkdir .acsl
+    cd .acsl
+    git clone https://github.com/acsl-tcu/ros2.git
+    cd ros2/0_host_commands
+  fi
   bash ./setup.sh $1 $2
   exit 1
 }
