@@ -1,5 +1,10 @@
 #! /bin/bash
 export PROJECT=$1
+ACSL_ROS2_DIR=$(
+  cd $(dirname $0)
+  cd ../
+  pwd
+)
 chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/scripts
 chmod -R a+x $ACSL_ROS2_DIR/1_docker/common/scripts
 
