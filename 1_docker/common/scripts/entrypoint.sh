@@ -26,14 +26,10 @@ if [[ -z $setuped ]]; then
   sed -i -e 's/\r//g' /common/scripts/setup_common.sh
   source /common/scripts/setup_common.sh
 
-  # udev起動（devを使うため）
+  # udev起動（devを使うため） : hostでやっていれば不要では？
   sed -i -e 's/\r//g' /common/scripts/run_udev.sh
   source /common/scripts/run_udev.sh
 fi
-
-# cp -p /common/rules/$PROJECT.rules /etc/udev/rules.d/90-custom.rules
-# sudo udevadm control --reload-rules
-# sudo udevadm trigger
 
 source /common/scripts/super_echo
 recho ROS_DOMAIN_ID : $ROS_DOMAIN_ID

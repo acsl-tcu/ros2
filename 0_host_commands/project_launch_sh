@@ -1,0 +1,5 @@
+#! /usr/bin/bash +x
+
+source /homedir/.bashrc
+echo $PROJECT
+echo $ROS_DOMAIN_ID

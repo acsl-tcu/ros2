@@ -9,8 +9,8 @@ After=syslog.target
 
 [Service]
 Type=exec
-WorkingDirectory=/homedir/ros2/1_docker
-ExecStart=/homedir/ros2/0_host_commands/project_launch.sh
+WorkingDirectory=ACSL_ROS2_DIR/0_host_commands/1_docker
+ExecStart=ACSL_ROS2_DIR/0_host_commands/project_launch.sh
 
 [Install]
 WantedBy = multi-user.target
