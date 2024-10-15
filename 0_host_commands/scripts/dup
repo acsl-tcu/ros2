@@ -14,16 +14,16 @@ if [ $# -ge 1 ]; then
 
     fx86=$(uname -a | grep x86)
     if [[ -n $fx86 ]]; then
-      TAG=${1%_x86}_x86
+      x86="_x86"
     else
-      TAG=$1
+      x86=""
     fi
-    echo $TAG
+    echo ${TAG%_x86}${x86}
 
-    exist_image=$(docker images kasekiguchi/acsl-common:$TAG | grep $TAG)
+    exist_image=$(docker images kasekiguchi/acsl-common:${TAG%_x86}${x86} | grep ${TAG%_x86}${x86})
     echo $exist_image
     if [[ -z $exist_image ]]; then
-      TAG=image_${PROJECT}
+      TAG=image_${PROJECT}${x86}
     fi
     echo $launch_args
     # CONTAINER_NAME=$1
