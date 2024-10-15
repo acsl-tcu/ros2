@@ -25,5 +25,10 @@ else
   OTAG=image_${PROJECT}
   DF=build
 fi
+fx86=$(uname -a | grep x86)
+if [[ -n $fx86 ]]; then
+  ITAG=${ITAG%_x86}_x86
+  OTAG=${OTAG%_x86}_x86
+fi
 gecho "build $OTAG FROM $ITAG using dockerfile.$DF"
 ITAG=$ITAG OTAG=$OTAG DF=$DF docker compose build image_build --no-cache
