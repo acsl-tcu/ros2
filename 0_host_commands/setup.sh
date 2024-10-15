@@ -1,5 +1,6 @@
 #! /usr/bin/bash +x
 
+ACSL_WORK_DIR="$(pwd)"
 ACSL_ROS2_DIR=$(
   cd $(dirname $0)
   cd ../
@@ -10,7 +11,7 @@ if [ $# -ge 1 ]; then
   PROJECT=$1
   sudo chmod -R a+x $ACSL_ROS2_DIR/1_docker/common/
 
-  $ACSL_ROS2_DIR/0_host_commands/setup_bashrc $@
+  $ACSL_ROS2_DIR/0_host_commands/setup_bashrc $ACSL_WORK_DIR $@
   $ACSL_ROS2_DIR/0_host_commands/setup_udev $ACSL_ROS2_DIR/1_docker/common/rules/$PROJECT.rules
   echo "project_launch_${PROJECT}_sh"
   if [[ -n $(find $ACSL_ROS2_DIR/0_host_commands | grep project_launch_${PROJECT}_sh) ]]; then

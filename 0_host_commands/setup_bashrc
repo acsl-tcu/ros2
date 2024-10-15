@@ -1,5 +1,6 @@
 #! /bin/bash
-export PROJECT=$1
+ACSL_WORK_DIR=$1
+export PROJECT=$2
 ACSL_ROS2_DIR=$(
   cd $(dirname $0)
   cd ../
@@ -21,8 +22,9 @@ set_bashrc "export PATH" $PATH
 set_bashrc "alias home" "'source home.sh'"
 set_bashrc "export PROJECT" $PROJECT
 set_bashrc "export ACSL_ROS2_DIR" $ACSL_ROS2_DIR
+set_bashrc "export ACSL_WORK_DIR" $ACSL_WORK_DIR
 if [ $# -eq 2 ]; then
-  RID=$2
+  RID=$3
 else
   RID=$(cat $ACSL_ROS2_DIR/0_host_commands/project_launcher/ros2_id_list | grep $PROJECT | awk '{print $NF}')
 fi

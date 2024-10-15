@@ -7,7 +7,7 @@ cd $ACSL_ROS2_DIR/1_docker
 source $ACSL_ROS2_DIR/1_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
-    $ACSL_ROS2_DIR/0_host_commands/project_launch.sh
+    $ACSL_WORK_DIR/project_launch.sh
   else
     launch_args=${@:2:($# - 1)}
     #LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose --env-file envfiles/env.$1 up common -d
@@ -27,7 +27,7 @@ if [ $# -ge 1 ]; then
     fi
     echo $launch_args
     # CONTAINER_NAME=$1
-    ROS_LAUNCH=$(ls -v $ACSL_ROS2_DIR/1_docker/common/ros_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
+    ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/ros_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
     echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
     TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
   fi
