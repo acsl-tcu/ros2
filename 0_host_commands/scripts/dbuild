@@ -6,6 +6,7 @@
 # dbuild A B : build image B from image A using dockerfile.build
 # dbuild A B DF : build image B from image A using DF
 cd $ACSL_ROS2_DIR/1_docker/
+echo $(pwd)
 source $ACSL_ROS2_DIR/1_docker/common/scripts/super_echo
 if [ $# -eq 3 ]; then
   ITAG=$1
