@@ -18,12 +18,14 @@ if [ $# -ge 1 ]; then
     else
       x86=""
     fi
-    echo ${TAG%_x86}${x86}
+    echo "===== TAG: ${TAG%_x86}${x86} ===="
 
     exist_image=$(docker images kasekiguchi/acsl-common:${TAG%_x86}${x86} | grep ${TAG%_x86}${x86})
-    echo $exist_image
+    echo "image : $exist_image "
     if [[ -z $exist_image ]]; then
       TAG=image_${PROJECT}${x86}
+    else
+      TAG=${TAG}${x86}
     fi
     echo $launch_args
     # CONTAINER_NAME=$1
