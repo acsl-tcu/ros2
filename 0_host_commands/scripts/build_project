@@ -17,17 +17,24 @@ gecho "build own ros packages"
 #echo $TAG
 #TAG=${TAG} dup build $packs
 
-exist_image=$(docker images kasekiguchi/acsl-common:image_$PROJECT | grep $PROJECT)
+fx86=$(uname -a | grep x86)
+if [[ -n $fx86 ]]; then
+  x86="_x86"
+else
+  x86=""
+fi
+
+exist_image=$(docker images kasekiguchi/acsl-common:image_${PROJECT}${x86} | grep ${PROJECT}${x86})
 if [[ -z $exist_image ]]; then
-  recho "create image_$PROJECT image first"
+  recho "create image_${PROJECT}${x86} image first"
 else
   dup build $packs
   # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
   # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
 
   dlogs build
-  gecho "docker commit : from build container to image_${PROJECT} tagged image"
-  dcommit build image_${PROJECT}
+  gecho "docker commit : from build container to image_${PROJECT}${x86} tagged image"
+  dcommit build image_${PROJECT}${x86}
   gecho "remove build container"
   drm build
 fi
