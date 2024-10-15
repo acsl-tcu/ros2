@@ -12,7 +12,13 @@ if [ $# -ge 1 ]; then
 
   $ACSL_ROS2_DIR/0_host_commands/setup_bashrc $@
   $ACSL_ROS2_DIR/0_host_commands/setup_udev $ACSL_ROS2_DIR/1_docker/common/rules/$PROJECT.rules
-  $ACSL_ROS2_DIR/0_host_commands/setup_systemd $ACSL_ROS2_DIR/0_host_commands/project_launch_sh
+  echo "project_launch_${PROJECT}_sh"
+  if [[ -n $(find $ACSL_ROS2_DIR/0_host_commands | grep project_launch_${PROJECT}_sh) ]]; then
+    sed -i "s|ACSL_ROS2_DIR|$ACSL_ROS2_DIR|g" project_launch_${PROJECT}_sh >project_launch.sh
+  else
+    cp $ACSL_ROS2_DIR/0_host_commands/project_launch.sh project_launch.sh
+  fi
+  $ACSL_ROS2_DIR/0_host_commands/setup_systemd $ACSL_ROS2_DIR/0_host_commands/project_launch.sh
   bash # source .bashrc忘れの予防
 else
   source $ACSL_ROS2_DIR/1_docker/common/scripts/super_echo
