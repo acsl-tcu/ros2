@@ -5,9 +5,9 @@
 # dbuild drone : build image_drone from base image using dockerfile.build ( verbose )
 # dbuild A B : build image B from image A using dockerfile.build
 # dbuild A B DF : build image B from image A using DF
-cd $ACSL_ROS2_DIR/3_docker/
+cd $ACSL_ROS2_DIR/4_docker/
 echo $(pwd)
-source $ACSL_ROS2_DIR/3_docker/common/scripts/super_echo
+source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -eq 3 ]; then
   ITAG=$1
   OTAG=$2

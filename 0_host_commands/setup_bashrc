@@ -8,7 +8,7 @@ ACSL_ROS2_DIR=$(
 )
 cd $ACSL_ROS2_DIR
 chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/scripts
-chmod -R a+x $ACSL_ROS2_DIR/3_docker/common/scripts
+chmod -R a+x $ACSL_ROS2_DIR/4_docker/common/scripts
 
 if [[ -z $(cat $ACSL_ROS2_DIR/bashrc | grep ORGPATH) ]]; then
   $ACSL_ROS2_DIR/0_host_commands/scripts/set_bashrc "export ORGPATH" $PATH
@@ -16,9 +16,9 @@ else
   source $ACSL_ROS2_DIR/bashrc
   export PATH="$ORGPATH"
 fi
-export PATH="$PATH:$ACSL_ROS2_DIR/3_docker/common/scripts:$ACSL_ROS2_DIR/0_host_commands/scripts"
-source $ACSL_ROS2_DIR/3_docker/common/scripts/super_echo
-set_bashrc "source $ACSL_ROS2_DIR/3_docker/common/scripts/super_echo"
+export PATH="$PATH:$ACSL_ROS2_DIR/4_docker/common/scripts:$ACSL_ROS2_DIR/0_host_commands/scripts"
+source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
+set_bashrc "source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo"
 set_bashrc "export PATH" $PATH
 set_bashrc "alias home" "'source home.sh'"
 set_bashrc "export PROJECT" $PROJECT

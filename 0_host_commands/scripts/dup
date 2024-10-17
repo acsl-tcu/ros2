@@ -3,8 +3,8 @@
 # Example :
 # dup tokyu debug : run tokyu project in debug mode
 # dup dev : simple up acsl-common:build
-cd $ACSL_ROS2_DIR/3_docker
-source $ACSL_ROS2_DIR/3_docker/common/scripts/super_echo
+cd $ACSL_ROS2_DIR/4_docker
+source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     $ACSL_WORK_DIR/project_launch.sh
