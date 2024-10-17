@@ -143,7 +143,7 @@ docker compose --env-file env.dev exec base bash
 
 commonイメージはentrypointとしてdocker/common/scripts/entrypoint.shを指定しており
 その中で任意のコマンドが呼べるようになっており（docker-compose内のcommandで指定）、
-/common/scripts/ros_launcher/内のファイルをROS_LAUNCH変数経由で指定できる。
+/common/ros_launcher/内のファイルをROS_LAUNCH変数経由で指定できる。
 
 以下を実行することで対応したROS packageを実行できる
 
@@ -265,7 +265,7 @@ docker container prune
 2. DOCKER上でros2_ws/src/ros_packages/内でパッケージを開発
 3. 各種起動ファイルを追加
   3.1 ROSパッケージを起動するコマンドを書いたlaunch_***.shを
-      docker/common/scripts/ros_launcherに追加
+      docker/common/ros_launcherに追加
   3.2 対応するenv.*** をdocker/内に追加
   3.3 systemd_files/ros2_launch_shに3.1のファイルの起動を追加
 4. HOST上でgitに登録

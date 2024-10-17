@@ -52,7 +52,7 @@ services:
     volumes:
       # bind "host folder":"docker folder"
       - ./common:/common # common scripts
-      - $ACSL_WORK_DIR/ros_launcher:/common/ros_launcher
+      - $ACSL_WORK_DIR/1_ros_launcher:/common/ros_launcher
       - /dev:/dev # GPIO and USB devices
       - vscode-server:/root/.vscode-server # VScode setting (preserve VScode extension)
       - $ACSL_WORK_DIR/ros_packages:/root/ros2_ws/src/ros_packages

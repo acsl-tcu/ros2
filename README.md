@@ -211,8 +211,8 @@ dev> rbuild "$PACKAGE" # 自作パッケージのbuild
 container内の /root/project_ws/src/ros_packages/にパッケージ追加<br>
 /root/project_ws/src/ros_packages/ は　2_ros_packages と同期されている。<br>
 動作するようになったら以下のファイルを追加する。<br>
-- 3_docker/common/ros_launcher/launch_"$CONTAINER".sh
-- 3_docker/common/rules/"$PROJECT".rules (optional)
+- 1_ros_launcher/launch_"$CONTAINER".sh
+- "$PROJECT".rules (optional)
 1で作成した project_launch_"$PROJECT"_sh に コンテナ起動用コマンドを追加し、2,3 を実行する。
 8. build_project "$PACKAGES"<br>
 "$PACKAGES"を指定しない場合は2_ros_packages内のすべてをcolcon buildする
