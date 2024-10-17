@@ -6,5 +6,5 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
 else
   # SBC 内の場合
   #cd /home/$USER/ros2
-  cd $ACSL_ROS2_DIR
+  cd $ACSL_WORK_DIR
 fi
