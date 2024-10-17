@@ -6,13 +6,14 @@ ACSL_ROS2_DIR=$(
   cd ../
   pwd
 )
+cd $ACSL_ROS2_DIR
 chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/scripts
 chmod -R a+x $ACSL_ROS2_DIR/1_docker/common/scripts
 
-if [[ -z $(cat ~/.bashrc | grep ORGPATH) ]]; then
+if [[ -z $(cat $ACSL_ROS2_DIR/bashrc | grep ORGPATH) ]]; then
   $ACSL_ROS2_DIR/0_host_commands/scripts/set_bashrc "export ORGPATH" $PATH
 else
-  source ~/.bashrc
+  source $ACSL_ROS2_DIR/bashrc
   export PATH="$ORGPATH"
 fi
 export PATH="$PATH:$ACSL_ROS2_DIR/1_docker/common/scripts:$ACSL_ROS2_DIR/0_host_commands/scripts"
@@ -31,4 +32,4 @@ fi
 set_bashrc "export ROS_DOMAIN_ID" $RID
 
 echo "Do following command"
-gecho "source ~/.bashrc"
+gecho "source $ACSL_ROS2_DIR/bashrc"

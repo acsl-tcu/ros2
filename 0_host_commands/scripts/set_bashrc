@@ -11,19 +11,19 @@
 # else do nothing
 
 key=$1
-check=$(cat ~/.bashrc | grep "$key")
+check=$(cat ./bashrc | grep "$key")
 if [[ $# > 1 ]]; then
     value=${@:2:($# - 1)}
     if [[ -z $check ]]; then # .bashrc に存在しない場合
         echo "ADD : $key=$value"
-        echo "$key=\"$value\"" >>~/.bashrc
+        echo "$key=\"$value\"" >>./bashrc
     else
         echo "REPLACE : $key=$value"
-        sed -i -e "/$key/c $key=\"$value\"" ~/.bashrc
+        sed -i -e "/$key/c $key=\"$value\"" ./bashrc
     fi
 else
     if [[ -z $check ]]; then # .bashrc に存在しない場合
         echo "ADD : $key"
-        echo "$key" >>~/.bashrc
+        echo "$key" >>./bashrc
     fi
 fi
