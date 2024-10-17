@@ -31,4 +31,5 @@ else
 fi
 set_bashrc "export ROS_DOMAIN_ID" $RID
 
-gecho "Do following command \nsource $ACSL_ROS2_DIR/bashrc"
+gecho "Do following command 
+source $ACSL_ROS2_DIR/bashrc"
