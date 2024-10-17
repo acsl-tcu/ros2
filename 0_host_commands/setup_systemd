@@ -3,7 +3,7 @@
 # [systemd] generate project_launch.service and project_launch.sh
 # LAUNCH_FILE=$1
 # 注意：systemd は rootで実行されるので ~ が使えないため、sedでフルパスを指定
-sed -e "s|ACSL_ROS2_WORK_DIR|$ACSL_ROS2_DIR/1_docker|g" $ACSL_ROS2_DIR/0_host_commands/project_launch_service >project_launch.service
+sed -e "s|ACSL_ROS2_WORK_DIR|$ACSL_ROS2_DIR/3_docker|g" $ACSL_ROS2_DIR/0_host_commands/project_launch_service >project_launch.service
 sed -i "s|ACSL_ROS2_EXEC|$1|" project_launch.service
 # Setting systemd
 sudo chmod a+x project_launch.sh

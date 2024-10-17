@@ -9,10 +9,10 @@ ACSL_ROS2_DIR=$(
 # ros node (＝　コンテナ)　の立ち上げ
 if [ $# -ge 1 ]; then
   PROJECT=$1
-  sudo chmod -R a+x $ACSL_ROS2_DIR/1_docker/common/
+  sudo chmod -R a+x $ACSL_ROS2_DIR/3_docker/common/
 
   $ACSL_ROS2_DIR/0_host_commands/setup_bashrc $ACSL_WORK_DIR $@
-  $ACSL_ROS2_DIR/0_host_commands/setup_udev $ACSL_ROS2_DIR/1_docker/common/rules/$PROJECT.rules
+  $ACSL_ROS2_DIR/0_host_commands/setup_udev $ACSL_ROS2_DIR/3_docker/common/rules/$PROJECT.rules
   echo "project_launch_${PROJECT}_sh"
   if [[ -n $(find $ACSL_ROS2_DIR/0_host_commands | grep project_launch_${PROJECT}_sh) ]]; then
     sed -i "s|ACSL_ROS2_DIR|$ACSL_ROS2_DIR|g" project_launch_${PROJECT}_sh >project_launch.sh
@@ -22,6 +22,6 @@ if [ $# -ge 1 ]; then
   $ACSL_ROS2_DIR/0_host_commands/setup_systemd $ACSL_ROS2_DIR/0_host_commands/project_launch.sh
   bash # source .bashrc忘れの予防
 else
-  source $ACSL_ROS2_DIR/1_docker/common/scripts/super_echo
+  source $ACSL_ROS2_DIR/3_docker/common/scripts/super_echo
   recho "Require PROJECT name"
 fi

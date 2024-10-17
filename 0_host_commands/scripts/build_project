@@ -3,7 +3,7 @@
 # #1 : project name
 # #2- : build target packages
 
-source $ACSL_ROS2_DIR/1_docker/common/scripts/super_echo
+source $ACSL_ROS2_DIR/3_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   #packs=${@:1:($# - 1)}
   packs=$@

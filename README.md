@@ -46,7 +46,7 @@ setup後、新しいプロジェクトを作成する場合は[開発の仕方](
 .
 |- .github              ：git関係（触ることはない）
 |- 0_host_commands/       ：HOSTのsetup関係フォルダ
-|- 1_docker/              ：DOCKER起動関係のフォルダ
+|- 3_docker/              ：DOCKER起動関係のフォルダ
 |- 2_ros_packages/        ：ROSパッケージ関係のフォルダ
 |- .gitignore           ：git管理から除外するファイルの設定
 |- README_SYSTEM.md     ：このファイル
@@ -57,7 +57,7 @@ setup後、新しいプロジェクトを作成する場合は[開発の仕方](
 |フォルダ名（パッケージ名）|概要|
 |:--|:--|
 |[0_host_commands](./0_host_commands/README_SYSTEMD.md)|systemdへのservice の登録関係フォルダ|
-|[1_docker](./1_docker/README_DOCKER.md) | 自律制御システムを動かすためのDocker Imageの環境設定ファイル群 |
+|[3_docker](./3_docker/README_DOCKER.md) | 自律制御システムを動かすためのDocker Imageの環境設定ファイル群 |
 |[2_ros_packages](./2_ros_packages/README_ROS.md)|ROSパッケージをまとめたフォルダ群|
 
 ## システム構成
@@ -137,7 +137,7 @@ dps
 
 ## Debug用コマンド
 
-1_docker/common/scripts 内の便利コマンド
+3_docker/common/scripts 内の便利コマンド
 
 ```bash
 # = git pull + commitしていない編集の削除 + 権限関係の整理
@@ -192,7 +192,7 @@ export ROS_DOMAIN_ID=11
 2. bash setup.sh "$PROEJCT" <br>
 systemdへproject_launch_"$PROJECT"_shを登録。ROS_DOMAIN_ID,　関連コマンド群のパスを.bashrcに登録
 3. source ~/.bashrc <br>
-4. vim 1_docker/dockerfiles/dockerfile."$EXT" (optional)<br>
+4. vim 3_docker/dockerfiles/dockerfile."$EXT" (optional)<br>
 必要に応じてイメージを拡張するファイルを追加<br>
 5. dsbuild <br>
 image_"$PROJECT" タグのdocker image作成<br>
@@ -211,8 +211,8 @@ dev> rbuild "$PACKAGE" # 自作パッケージのbuild
 container内の /root/project_ws/src/ros_packages/にパッケージ追加<br>
 /root/project_ws/src/ros_packages/ は　2_ros_packages と同期されている。<br>
 動作するようになったら以下のファイルを追加する。<br>
-- 1_docker/common/ros_launcher/launch_"$CONTAINER".sh
-- 1_docker/common/rules/"$PROJECT".rules (optional)
+- 3_docker/common/ros_launcher/launch_"$CONTAINER".sh
+- 3_docker/common/rules/"$PROJECT".rules (optional)
 1で作成した project_launch_"$PROJECT"_sh に コンテナ起動用コマンドを追加し、2,3 を実行する。
 8. build_project "$PACKAGES"<br>
 "$PACKAGES"を指定しない場合は2_ros_packages内のすべてをcolcon buildする
@@ -246,7 +246,7 @@ devコンテナで機能することが確認できたらdockerfileに追加し�
 
 ```bash
 # dockerfileに追加　エディタは何でも良い
-vim ~/ros2/1_docker/dockerfiles/dockerfile."$project"
+vim ~/ros2/3_docker/dockerfiles/dockerfile."$project"
 # image_"$project" イメージを作成
 docker compose build "$project" (--no-cache)
 ```
