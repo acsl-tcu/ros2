@@ -101,16 +101,25 @@ echo() {
 
 recho() {
   ESC=$(printf '\033') TAB=$(printf '\011')
-  putsn "${ESC}[31m${TAB}ACSL: 
-${@:-}${TAB}${ESC}[m"
+  putsn "${ESC}[31m
+========= ACSL: ==========
+${@:-}
+==========================
+${TAB}${ESC}[m"
 }
 gecho() {
   ESC=$(printf '\033') TAB=$(printf '\011')
-  putsn "${ESC}[32m${TAB}ACSL: 
-${@:-}${TAB}${ESC}[m"
+  putsn "${ESC}[32m
+========= ACSL: ==========
+${@:-}
+==========================
+${TAB}${ESC}[m"
 }
 becho() {
   ESC=$(printf '\033') TAB=$(printf '\011')
-  putsn "${ESC}[34m${TAB}ACSL: 
-${@:-}${TAB}${ESC}[m"
+  putsn "${ESC}[34m
+========= ACSL: ==========
+${@:-}
+==========================
+${TAB}${ESC}[m"
 }
