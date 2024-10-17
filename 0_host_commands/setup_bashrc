@@ -20,7 +20,7 @@ export PATH="$PATH:$ACSL_ROS2_DIR/4_docker/common/scripts:$ACSL_ROS2_DIR/0_host_
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 set_bashrc "source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo"
 set_bashrc "export PATH" $PATH
-set_bashrc "alias home" "'source $ACSL_ROS2_DIR/4_docker/common/scripts/home.sh'"
+set_bashrc "alias home" "source $ACSL_ROS2_DIR/4_docker/common/scripts/home.sh"
 set_bashrc "export PROJECT" $PROJECT
 set_bashrc "export ACSL_ROS2_DIR" $ACSL_ROS2_DIR
 set_bashrc "export ACSL_WORK_DIR" $ACSL_WORK_DIR
