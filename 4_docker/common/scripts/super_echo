@@ -105,7 +105,7 @@ recho() {
 }
 gecho() {
   ESC=$(printf '\033') TAB=$(printf '\011')
-  putsn "${ESC}[32m${TAB}ACSL: \n${@:-}${TAB}${ESC}[m"
+  putsn -e "${ESC}[32m${TAB}ACSL: \n${@:-}${TAB}${ESC}[m"
 }
 becho() {
   ESC=$(printf '\033') TAB=$(printf '\011')
