@@ -34,8 +34,10 @@ services:
     command:
       # arguments for entrypoint.sh (refer to the entrypoint.sh file)
       [
-        "/common/ros_launcher/${ROS_LAUNCH:-launch_dev.sh}",
-        "${LARGS:-None}" # launch arguments
+        "ls /common/",
+        "ls /common/ros_launcher/"
+        #"/common/ros_launcher/${ROS_LAUNCH:-launch_dev.sh}",
+        #"${LARGS:-None}" # launch arguments
       ]
     working_dir: /root/ros2_ws
     environment:
