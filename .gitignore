@@ -1,5 +1,5 @@
 # ros2_launch.sh はhostnameを含むように自動生成しているのでパッケージ管理からは外す
-*project_launch.sh
+*project_launch*.sh
 *project_launch.service
 
 ############ Custom

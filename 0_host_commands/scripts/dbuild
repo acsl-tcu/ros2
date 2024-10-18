@@ -1,7 +1,7 @@
 #! /usr/bin/bash
 # Build docker image
 # [Usage] arguments number <= 3
-# dbuild  : build image_${PROJECT} from base image using dockerfile.build
+# dbuild  : build image_${PROJECT}${TARGET} from base image using dockerfile.build
 # dbuild drone : build image_drone from base image using dockerfile.build ( verbose )
 # dbuild A B : build image B from image A using dockerfile.build
 # dbuild A B DF : build image B from image A using DF
@@ -23,7 +23,7 @@ elif [ $# -eq 1 ]; then
 else
   recho "Confirm setup.sh is completed by bash setup.sh PROJECT_NAME at 0_host_commands"
   ITAG=base
-  OTAG=image_${PROJECT}
+  OTAG=image_${PROJECT}${TARGET}
   DF=build
 fi
 fx86=$(uname -a | grep x86)

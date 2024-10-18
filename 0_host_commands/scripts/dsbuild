@@ -8,7 +8,7 @@
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 
 echo "##########################################"
-gecho "Build image_${PROJECT}"
+gecho "Build image_${PROJECT}${TARGET}"
 echo "##########################################"
 if [ $# -ge 1 ]; then
   ITAG=$1

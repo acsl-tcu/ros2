@@ -3,6 +3,3 @@
 drm $@
 
 dup $@
-
-#cd ~/ros2/4_docker
-#CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=${PROJECT}_$1 ROS_LAUNCH=launch_$1.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose restart common

@@ -1,6 +1,11 @@
 #! /bin/bash
 ACSL_WORK_DIR=$1
 export PROJECT=$2
+if [[ $# -eq 4 ]]; then
+  export TARGET=_$4
+else
+  export TARGET=""
+fi
 ACSL_ROS2_DIR=$(
   cd $(dirname $0)
   cd ../
@@ -22,12 +27,13 @@ set_bashrc "source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo"
 set_bashrc "export PATH" $PATH
 set_bashrc "alias home" "source $ACSL_ROS2_DIR/4_docker/common/scripts/home.sh"
 set_bashrc "export PROJECT" $PROJECT
+set_bashrc "export TARGET" $TARGET
 set_bashrc "export ACSL_ROS2_DIR" $ACSL_ROS2_DIR
 set_bashrc "export ACSL_WORK_DIR" $ACSL_WORK_DIR
 if [ $# -eq 3 ]; then
   RID=$3
 else
-  RID=$(cat $ACSL_ROS2_DIR/0_host_commands/ros2_id_list | grep $PROJECT | awk '{print $NF}')
+  RID=$(cat $ACSL_ROS2_DIR/ros2_id_list | grep $PROJECT | awk '{print $NF}')
 fi
 set_bashrc "export ROS_DOMAIN_ID" $RID
 
