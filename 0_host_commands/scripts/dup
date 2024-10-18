@@ -7,7 +7,7 @@ cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
-    $ACSL_WORK_DIR/project_launch.sh
+    $ACSL_WORK_DIR/project_launch${TARGET}.sh
   else
     launch_args=${@:2:($# - 1)}
     #LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose --env-file envfiles/env.$1 up common -d
