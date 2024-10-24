@@ -3,7 +3,7 @@
 if [ ${HOSTNAME:0:1} == "D" ]; then
   ros_packages=$(ls ~/ros2_ws/src/ros_packages)
 else
-  ros_packages=$(ls $ACSL_WORK_DIR/ros_packages)
+  ros_packages=$(ls $ACSL_WORK_DIR/2_ros_packages)
 fi
 
 echo ${ros_packages/README_ROS.md/}

@@ -27,6 +27,7 @@ if [ $# -ge 1 ]; then
     else
       TAG=${TAG}${x86}
     fi
+    echo "TAG : $TAG"
     echo $launch_args
     # CONTAINER_NAME=$1
     ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_ros_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
