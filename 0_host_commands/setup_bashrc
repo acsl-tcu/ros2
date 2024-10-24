@@ -33,7 +33,7 @@ set_bashrc "export ACSL_WORK_DIR" $ACSL_WORK_DIR
 if [ $# -eq 3 ]; then
   RID=$3
 else
-  RID=$(cat $ACSL_ROS2_DIR/ros2_id_list | grep $PROJECT | awk '{print $NF}')
+  RID=$(cat $ACSL_ROS2_DIR/ros2_id_list | grep -w $PROJECT | awk '{print $NF}')
 fi
 set_bashrc "export ROS_DOMAIN_ID" $RID
 
