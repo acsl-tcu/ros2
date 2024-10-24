@@ -1,6 +1,6 @@
 services:
   image_build:
-    # [build]
+    # [build] call by dbuild command
     # service to run rosdep update && colcon build
     # TARGET_TAG : tag of build source image "acsl-common"
     # TAG : output image tag 
@@ -15,7 +15,7 @@ services:
         # for arch : arm64v8/ros:humble
 
   common:
-    # [up]
+    # [up] call by dup command
     # HOSTNAME : host pc name
     # CONTAINER_NAME : output container name
     # ROS_LAUNCH : shell script name containing ros2 start command in the container
