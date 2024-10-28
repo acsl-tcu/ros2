@@ -2,12 +2,18 @@
 
 if [ ${HOSTNAME:0:1} == "D" ]; then
   # docker container 内の場合
-  /common/scripts/hostbash "$ACSL_ROS2_DIR/4_docker/common/scripts/gpull"
+  /common/scripts/hostbash "$ACSL_ROS2_DIR/4_docker/common/scripts/gpull $@"
 else
   # SBC 内の場合
-  cd $ACSL_ROS2_DIR
+  if [[ -v $1 ]]; then
+    cd $1
+  else
+    cd $ACSL_WORK_DIR
+  fi
   git checkout .
   git pull
-  chmod -R a+x 4_docker/common/
-  chmod -R a+x 0_host_commands/
+  chmod -R a+x $ACSL_ROS2_DIR/4_docker/common/
+  chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/
+  chmod -R a+x $ACSL_WORK_DIR/1_ros_launcher/
+  chmod -R a+x $ACSL_WORK_DIR/project_launch*
 fi
