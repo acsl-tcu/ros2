@@ -26,7 +26,8 @@ fi
 
 exist_image=$(docker images kasekiguchi/acsl-common:image_${PROJECT}${TARGET}${x86} | grep ${PROJECT}${TARGET}${x86})
 if [[ -z $exist_image ]]; then
-  recho "create image_${PROJECT}${TARGET}${x86} image first"
+  recho "create image_${PROJECT}${TARGET}${x86} image first by
+  dsbuild"
 else
   dup build $packs
   # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
