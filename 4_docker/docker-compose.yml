@@ -57,6 +57,7 @@ services:
       - /dev:/dev # GPIO and USB devices
       - vscode-server:/root/.vscode-server # VScode setting (preserve VScode extension)
       - $ACSL_WORK_DIR/2_ros_packages:/root/ros2_ws/src/ros_packages
+      - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
         # ros packages
         # - ./common/rules/custom.rules:/etc/udev/rules.d/90-custom.rules # custom configuration for USB device
 
