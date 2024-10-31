@@ -35,8 +35,10 @@ source /common/scripts/super_echo
 recho ROS_DOMAIN_ID : $ROS_DOMAIN_ID
 export PATH=/common/scripts:${PATH}
 source /opt/ros/${ROS_DISTRO}/setup.bash
-source /root/ros2_ws/install/local_setup.bash
-source /root/ros2_ws/install/setup.bash
+if [[ -d /root/ros2_ws/install ]]; then
+  source /root/ros2_ws/install/local_setup.bash
+  source /root/ros2_ws/install/setup.bash
+fi
 gecho ===== Ready! =====
 echo $PATH
 if [ $# -eq 0 ]; then
