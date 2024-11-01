@@ -47,8 +47,10 @@ services:
       - HOST_USER=$LOGNAME # deprecate 
       - ROS_DOMAIN_ID=${ROS_DOMAIN_ID} # set project unique id
       # - SSH_PORT=3222 # to activate SSH, following ports should be active :  User=root Password=root
-      #ports:
+    ports:
       #  - 3222:3222
+      - 8080:8080
+      
 
     volumes:
       # bind "host folder":"docker folder"
