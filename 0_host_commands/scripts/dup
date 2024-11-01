@@ -30,7 +30,7 @@ if [ $# -ge 1 ]; then
     echo "TAG : $TAG"
     echo $launch_args
     # CONTAINER_NAME=$1
-    ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_ros_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
+    ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
     echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
     TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
   fi

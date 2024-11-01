@@ -14,6 +14,6 @@ else
   git pull
   chmod -R a+x $ACSL_ROS2_DIR/4_docker/common/
   chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/
-  chmod -R a+x $ACSL_WORK_DIR/1_ros_launcher/
+  chmod -R a+x $ACSL_WORK_DIR/1_launcher/
   chmod -R a+x $ACSL_WORK_DIR/project_launch*
 fi
