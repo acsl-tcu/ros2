@@ -24,7 +24,7 @@ services:
     tty: true
     privileged: true # privileged mode
     image: kasekiguchi/acsl-common:${TAG:-base}
-    hostname: D${HOSTNAME:-}
+    hostname: D${HOSTNAME:-rp5}
     container_name: ${CONTAINER_NAME:-dev}
     entrypoint:
       [
