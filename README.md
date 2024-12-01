@@ -44,12 +44,17 @@ setup後、新しいプロジェクトを作成する場合は[開発の仕方](
 
 ```
 .
-|- .github              ：git関係（触ることはない）
-|- 0_host_commands/       ：HOSTのsetup関係フォルダ
-|- 4_docker/              ：DOCKER起動関係のフォルダ
-|- 2_ros_packages/        ：ROSパッケージ関係のフォルダ
-|- .gitignore           ：git管理から除外するファイルの設定
-|- README_SYSTEM.md     ：このファイル
+|- .github                : git関係（触ることはない）
+|- 0_host_commands/       : scripts for HOST setup
+|- 1_launcher/            : (ROS) launch files for container
+|- 2_ros_packages/        : ROS packages
+|- 3_dockerfiles/         : dockerfile to build image
+|- 4_docker/              : commands and setting for DOCKER container
+ダ
+|- hardware_setup       : documents for hardware setup
+|- rules                : udev rules
+|- .gitignore           : git管理から除外するファイルの設定
+|- README.md            ：このファイル
 |- TODO.md              ：TODOタスク
 ```
 
@@ -57,8 +62,8 @@ setup後、新しいプロジェクトを作成する場合は[開発の仕方](
 |フォルダ名（パッケージ名）|概要|
 |:--|:--|
 |[0_host_commands](./0_host_commands/README_SYSTEMD.md)|systemdへのservice の登録関係フォルダ|
-|[4_docker](./4_docker/README_DOCKER.md) | 自律制御システムを動かすためのDocker Imageの環境設定ファイル群 |
 |[2_ros_packages](./2_ros_packages/README_ROS.md)|ROSパッケージをまとめたフォルダ群|
+|[4_docker](./4_docker/README_DOCKER.md) | 自律制御システムを動かすためのDocker Imageの環境設定ファイル群 |
 
 ## システム構成
 
