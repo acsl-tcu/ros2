@@ -49,62 +49,63 @@ FROM ros2 as tools
 # curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
 # echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
-RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
-	ros-${ROS_DISTRO}-generate-parameter-library \
-	build-essential \
-	cmake \
-	ca-certificates \
-	usbutils i2c-tools \
-	apt-transport-https \
-	apt-utils\ 
-	software-properties-common \
-	pkg-config \
-	uuid-dev \
-	tk-dev \
-	bluez \
-	at \
-	ed \ 
-	unzip \
-	lsb-release \
-	curl \
-	git \
-	lv vim tmux fish \ 
-	gnupg \
-	joystick \
-	openssh-server \
-	language-pack-ja \
-	tzdata \
-	xserver-xorg \
-	ffmpeg \
-	libbz2-dev \
-	gpiod \
-	libbluetooth-dev libboost-python-dev libboost-thread-dev \
-	libdb-dev \
-	libffi-dev \
-	libgdbm-dev \
-	libglx-dev libgl-dev \
-	libgpiod-dev libgpiod-doc \
-	libgtk-3-dev libglfw3-dev  libgl1-mesa-dev  libglu1-mesa-dev \
-	liblzma-dev \
-	libncursesw5-dev \
-	libreadline-dev \
-	libsqlite3-dev \
-	libssl-dev \
-	libusb-1.0-0 \
-	libusb-1.0-0-dev \
-	libusb-dev\
-	libudev-dev udev \
-	zlib1g-dev \
-	ros-${ROS_DISTRO}-cv-bridge \
-	ros-${ROS_DISTRO}-image-transport \
-	ros-${ROS_DISTRO}-diagnostic-updater \
-	ros-${ROS_DISTRO}-rqt-tf-tree \
-	ros-${ROS_DISTRO}-xacro \
-	ros-${ROS_DISTRO}-tf-transformations \
-	&& apt autoremove -y \
-	&& apt clean -y \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+# RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
+# 	ros-${ROS_DISTRO}-generate-parameter-library \
+# 	build-essential \
+# 	cmake \
+# 	ca-certificates \
+# 	usbutils i2c-tools \
+# 	apt-transport-https \
+# 	apt-utils\ 
+# 	software-properties-common \
+# 	pkg-config \
+# 	uuid-dev \
+# 	tk-dev \
+# 	bluez \
+# 	at \
+# 	ed \ 
+# 	unzip \
+# 	lsb-release \
+# 	curl \
+# 	git \
+# 	lv vim tmux fish \ 
+# 	gnupg \
+# 	joystick \
+# 	openssh-server \
+# 	language-pack-ja \
+# 	tzdata \
+# 	xserver-xorg \
+# 	ffmpeg \
+# 	libbz2-dev \
+# 	gpiod \
+# 	libbluetooth-dev libboost-python-dev libboost-thread-dev \
+# 	libdb-dev \
+# 	libffi-dev \
+# 	libgdbm-dev \
+# 	libglx-dev libgl-dev \
+# 	libgpiod-dev libgpiod-doc \
+# 	libgtk-3-dev libglfw3-dev  libgl1-mesa-dev  libglu1-mesa-dev \
+# 	liblzma-dev \
+# 	libncursesw5-dev \
+# 	libreadline-dev \
+# 	libsqlite3-dev \
+# 	libssl-dev \
+# 	libusb-1.0-0 \
+# 	libusb-1.0-0-dev \
+# 	libusb-dev\
+# 	libudev-dev udev \
+# 	zlib1g-dev \
+# 	ros-${ROS_DISTRO}-cv-bridge \
+# 	ros-${ROS_DISTRO}-image-transport \
+# 	ros-${ROS_DISTRO}-diagnostic-updater \
+# 	ros-${ROS_DISTRO}-rqt-tf-tree \
+# 	ros-${ROS_DISTRO}-xacro \
+# 	ros-${ROS_DISTRO}-tf-transformations \
+# 	&& apt autoremove -y \
+# 	&& apt clean -y \
+# 	&& rm -rf /var/lib/apt/lists/* \
+# 	&& cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
 # gdal-bin \
 # libgdal-dev \
 # python3-gdal \ 
@@ -121,41 +122,42 @@ RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
 # 	&& sudo make install\
 # 	&& cd .. && rm -fr pigpio-master && rm -f master.zip
 
-FROM tools as ros2_py3
-RUN apt update && apt install -y \
-	python3-numpy \
-	python3-scipy \
-	python3-pandas \
-	python3-numexpr \
-	python3-matplotlib \
-	python3-serial \
-	python3-tk \
-	python3-smbus2 \
-	python3-pexpect \
-	python3-transforms3d \
-	python3-rosdep \
-	python3-bluez \
-	python3-pip
+# FROM tools as ros2_py3
+# RUN apt update && apt install -y \
+# 	python3-numpy \
+# 	python3-scipy \
+# 	python3-pandas \
+# 	python3-numexpr \
+# 	python3-matplotlib \
+# 	python3-serial \
+# 	python3-tk \
+# 	python3-smbus2 \
+# 	python3-pexpect \
+# 	python3-transforms3d \
+# 	python3-rosdep \
+# 	python3-bluez \
+# 	python3-pip
 
 # python3-rpi-lgpio \
 # host ではこれで入るがdocker 内では入らないのでpipで入れる。
 
 # for jazzy
 #RUN pip install -U --break-system-packages \ 
-RUN pip install -U \
-	pymavlink\
-	pip-review \
-	whill \
-	vl53l1x \
-	l293d \
-	pygame \
-	dumb-init \
-	bluepy \
-	rpi-lgpio\
-	setuptools==58.2.0 \
-	&& apt autoremove -y \
-	&& apt clean \
-	&& rm -rf /var/lib/apt/lists/* 
+# RUN pip install -U \
+# 	pymavlink\
+# 	pip-review \
+# 	whill \
+# 	vl53l1x \
+# 	l293d \
+# 	pygame \
+# 	dumb-init \
+# 	bluepy \
+# 	rpi-lgpio\
+# 	setuptools==58.2.0 \
+# 	&& apt autoremove -y \
+# 	&& apt clean \
+# 	&& rm -rf /var/lib/apt/lists/* 
+
 # rpi-gpio \
 # setuptools==58.2.0
 # rpi-lgpio : RP5 用
