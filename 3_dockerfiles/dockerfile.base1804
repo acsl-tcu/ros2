@@ -41,10 +41,10 @@ RUN export ROS_DISTRO=dashing && \
 ## 環境設定
 RUN    echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
 
-FROM ubuntu as ros2
+#FROM ubuntu as ros2
 #FROM ${BASE_IMAGE} as ros2
 ############################################################################################
-FROM ros2 as tools
+#FROM ros2 as tools
 # 	&& apt update -y && apt install -y  --no-install-recommends \
 # curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
 # echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
