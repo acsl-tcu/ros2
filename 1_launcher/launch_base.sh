@@ -1,4 +1,4 @@
-#! /usr/bin/bash
+#! /bin/sh
 
 echo "nothing launched"
 # cd /root/ros2_ws
