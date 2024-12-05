@@ -1,16 +1,7 @@
-#!/bin/sh
+#! /usr/bin/bash
 
-# Check if /usr/bin/bash exists
-if [ -x "/usr/bin/bash" ]; then
-    exec /usr/bin/bash "$@"
-# Check if /bin/bash exists
-elif [ -x "/bin/bash" ]; then
-    exec /bin/bash "$@"
-else
-    echo "Bash not found in /usr/bin/bash or /bin/bash"
-    exit 1
-fi
-## ! /usr/bin/bash
+mapfile -t tmp < <(ls /opt/ros/)
+ROS_DISTRO=${tmp[0]}
 
 #############################################################
 # docker container 環境内で実行されるファイル
