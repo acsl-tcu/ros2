@@ -78,7 +78,7 @@ graph TD;
 （imageの設定、dockerの設定まで）
 
 [Raspberry Pi5](hardware_setup/README_raspberry_pi_5.md)<br>
-[WLS2](hardware_setup/README_WSL2.md)
+[Ubunt/WLS2](hardware_setup/README_WSL2.md)
 
 ### Git clone
 
