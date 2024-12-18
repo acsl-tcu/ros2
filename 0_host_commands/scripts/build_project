@@ -3,6 +3,23 @@
 # #1 : project name
 # #2- : build target packages
 
+OPT=""
+while (($# > 0)); do
+  case $1 in
+  # ...
+  -i | --image | --image=*)
+    if [[ "$1" =~ ^--image= ]]; then
+      OPT=$(echo $1 | sed -e 's/^--image=//')
+    else
+      OPT="$2"
+      shift
+    fi
+    ;;
+    # ...
+  esac
+  shift
+done
+
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   #packs=${@:1:($# - 1)}
@@ -23,8 +40,12 @@ if [[ -n $fx86 ]]; then
 else
   x86=""
 fi
-
-exist_image=$(docker images kasekiguchi/acsl-common:image_${PROJECT}${TARGET}${x86} | grep ${PROJECT}${TARGET}${x86})
+if [[ ${OPT} == "" ]]; then
+  TAG=image_${PROJECT}${TARGET}${x86}
+else
+  TAG=${OPT}
+fi
+exist_image=$(docker images kasekiguchi/acsl-common:${TAG} | grep ${TAG})
 if [[ -z $exist_image ]]; then
   recho "create image_${PROJECT}${TARGET}${x86} image first by
   dsbuild"
