@@ -62,7 +62,7 @@ if [[ ${OPT} == "" ]]; then
   fi
 else
   echo "!!!!!!!!!!!!!!!!!!"
-  dup build --image=${OPT} $packs
+  dup --image=${OPT} build $packs
   dlogs build
   gecho "docker commit : from build container to ${OPT} tagged image"
   dcommit build ${OPT}
