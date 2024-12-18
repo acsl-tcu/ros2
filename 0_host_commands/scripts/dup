@@ -26,8 +26,7 @@ if [[ "$1" =~ ^--image= ]]; then
 fi
 
 echo "=========================="
-echo $#
-echo $1
+echo $OPT
 
 cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
