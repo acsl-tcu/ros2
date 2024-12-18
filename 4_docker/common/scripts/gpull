@@ -12,6 +12,7 @@ else
   fi
   bashrc=$(ls . | grep bashrc)
   if [[ -v $bashrc ]]; then
+    echo $(pwd)
     cp -p bashrc ~/tttt
   fi
   git checkout .
