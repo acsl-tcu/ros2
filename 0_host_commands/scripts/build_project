@@ -40,30 +40,29 @@ if [[ -n $fx86 ]]; then
 else
   x86=""
 fi
+
 if [[ ${OPT} == "" ]]; then
   TAG=image_${PROJECT}${TARGET}${x86}
-else
-  export TMP=${PROJECT}
-  export PROJECT=${OPT}
-  TAG=${OPT}
-fi
-echo ${TAG}
-exist_image=$(docker images kasekiguchi/acsl-common:${TAG} | grep ${TAG})
-if [[ -z $exist_image ]]; then
-  recho "create image_${PROJECT}${TARGET}${x86} image first by
+  exist_image=$(docker images kasekiguchi/acsl-common:${TAG} | grep ${TAG})
+  if [[ -z $exist_image ]]; then
+    recho "create ${TAG} image first by
   dsbuild"
-else
-  dup build $packs
-  # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
-  # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
+  else
+    dup build $packs
+    # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
+    # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
 
+    dlogs build
+    gecho "docker commit : from build container to image_${TAG} tagged image"
+    dcommit build ${TAG}
+    gecho "remove build container"
+    drm build
+  fi
+else
+  dup build --image=${OPT} $packs
   dlogs build
-  gecho "docker commit : from build container to image_${PROJECT}${TARGET}${x86} tagged image"
-  dcommit build image_${PROJECT}${TARGET}${x86}
+  gecho "docker commit : from build container to ${OPT} tagged image"
+  dcommit build ${OPT}
   gecho "remove build container"
   drm build
-fi
-
-if [[ ${OPT} != "" ]]; then
-  export PROJECT=${TMP}
 fi

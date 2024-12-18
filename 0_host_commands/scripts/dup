@@ -3,6 +3,24 @@
 # Example :
 # dup tokyu debug : run tokyu project in debug mode
 # dup dev : simple up acsl-common:build
+
+OPT=""
+while (($# > 0)); do
+  case $1 in
+  # ...
+  -i | --image | --image=*)
+    if [[ "$1" =~ ^--image= ]]; then
+      OPT=$(echo $1 | sed -e 's/^--image=//')
+    else
+      OPT="$2"
+      shift
+    fi
+    ;;
+    # ...
+  esac
+  shift
+done
+
 cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
@@ -27,12 +45,18 @@ if [ $# -ge 1 ]; then
     else
       TAG=${TAG}${x86}
     fi
-    echo "TAG : $TAG"
-    echo $launch_args
-    # CONTAINER_NAME=$1
-    ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
-    echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
-    TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
+    if [[ ${OPT} == "" ]]; then
+      echo "TAG : $TAG"
+      echo $launch_args
+      # CONTAINER_NAME=$1
+      ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
+      echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
+      TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
+    else
+      echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
+      cp $ACSL_ROS2_DIR/1_launcher/launch_build.sh $ACSL_WORK_DIR/1_launcher/
+      TAG=${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
+    fi
   fi
 fi
 
