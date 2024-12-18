@@ -5,6 +5,8 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   /common/scripts/hostbash "$ACSL_ROS2_DIR/4_docker/common/scripts/gpull $@"
 else
   # SBC 内の場合
+  echo $1
+  echo "------------------"
   if [[ -v $1 ]]; then
     cd $1
   else
