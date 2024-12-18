@@ -5,21 +5,26 @@
 # dup dev : simple up acsl-common:build
 
 OPT=""
-while (($# > 0)); do
-  case $1 in
-  # ...
-  -i | --image | --image=*)
-    if [[ "$1" =~ ^--image= ]]; then
-      OPT=$(echo $1 | sed -e 's/^--image=//')
-    else
-      OPT="$2"
-      shift
-    fi
-    ;;
-    # ...
-  esac
+# while (($# > 0)); do
+#   case $1 in
+#   # ...
+#   -i | --image | --image=*)
+#     if [[ "$1" =~ ^--image= ]]; then
+#       OPT=$(echo $1 | sed -e 's/^--image=//')
+#     else
+#       OPT="$2"
+#       shift
+#     fi
+#     ;;
+#     # ...
+#   esac
+#   shift
+# done
+if [[ "$1" =~ ^--image= ]]; then
+  OPT=$(echo $1 | sed -e 's/^--image=//')
   shift
-done
+fi
+
 echo "=========================="
 echo $#
 echo $1

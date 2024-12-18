@@ -4,21 +4,23 @@
 # #2- : build target packages
 
 OPT=""
-while (($# > 0)); do
-  case $1 in
-  # ...
-  -i | --image | --image=*)
-    if [[ "$1" =~ ^--image= ]]; then
-      OPT=$(echo $1 | sed -e 's/^--image=//')
-    else
-      OPT="$2"
-      shift
-    fi
-    ;;
-    # ...
-  esac
+# while (($# > 0)); do
+#   case $1 in
+#   # ...
+#   -i | --image | --image=*)
+if [[ "$1" =~ ^--image= ]]; then
+  OPT=$(echo $1 | sed -e 's/^--image=//')
   shift
-done
+fi
+#     else
+#       OPT="$2"
+#       shift
+#     fi
+#     ;;
+#     # ...
+#   esac
+#   shift
+# done
 
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
