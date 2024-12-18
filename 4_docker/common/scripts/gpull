@@ -7,7 +7,7 @@ else
   # SBC 内の場合
   echo $1
   echo "------------------"
-  if [[ -v $1 ]]; then
+  if [[ $# -gt 0 ]]; then
     cd $1
   else
     cd $ACSL_WORK_DIR
