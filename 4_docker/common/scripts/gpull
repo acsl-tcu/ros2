@@ -11,7 +11,9 @@ else
     cd $ACSL_WORK_DIR
   fi
   bashrc=$(ls . | grep bashrc)
-  if [[ -v $bashrc ]]; then
+  echo "=========================="
+  echo ${bashrc}
+  if [[ -v ${bashrc} ]]; then
     echo $(pwd)
     cp -p bashrc ~/tttt
   fi
