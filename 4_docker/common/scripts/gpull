@@ -10,15 +10,17 @@ else
   else
     cd $ACSL_WORK_DIR
   fi
-  bashrc=$(ls bashrc | grep bashrc)
+  bashrc=$(ls . | grep bashrc)
   if [[ -v $bashrc ]]; then
     cp -p bashrc ~/tttt
   fi
   git checkout .
   git pull
+  echo "chmod in ${ACSL_WORK_DIR}"
   chmod -R a+x $ACSL_WORK_DIR/1_launcher/
   chmod -R a+x $ACSL_WORK_DIR/project_launch*
   if [[ -v $bashrc ]]; then
+    echo "chmod in ${ACSL_ROS2_DIR}"
     chmod -R a+x $ACSL_ROS2_DIR/4_docker/common/
     chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/
     mv ~/tttt ./bashrc
