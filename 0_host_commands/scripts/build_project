@@ -43,8 +43,11 @@ fi
 if [[ ${OPT} == "" ]]; then
   TAG=image_${PROJECT}${TARGET}${x86}
 else
+  export TMP=${PROJECT}
+  export PROJECT=${OPT}
   TAG=${OPT}
 fi
+echo ${TAG}
 exist_image=$(docker images kasekiguchi/acsl-common:${TAG} | grep ${TAG})
 if [[ -z $exist_image ]]; then
   recho "create image_${PROJECT}${TARGET}${x86} image first by
@@ -59,4 +62,8 @@ else
   dcommit build image_${PROJECT}${TARGET}${x86}
   gecho "remove build container"
   drm build
+fi
+
+if [[ ${OPT} != "" ]]; then
+  export PROJECT=${TMP}
 fi
