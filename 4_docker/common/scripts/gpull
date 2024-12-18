@@ -11,6 +11,7 @@ else
     cd $ACSL_WORK_DIR
   fi
   bashrc=$(ls . | grep bashrc)
+  echo $(pwd)
   echo "=========================="
   echo ${bashrc}
   if [[ -v ${bashrc} ]]; then
