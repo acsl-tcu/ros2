@@ -59,7 +59,6 @@ if [[ ${OPT} == "" ]]; then
     drm build
   fi
 else
-  echo "=========================="
   dup build --image=${OPT} $packs
   dlogs build
   gecho "docker commit : from build container to ${OPT} tagged image"

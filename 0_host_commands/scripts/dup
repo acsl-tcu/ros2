@@ -20,6 +20,9 @@ while (($# > 0)); do
   esac
   shift
 done
+echo "=========================="
+echo $#
+echo $1
 
 cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
