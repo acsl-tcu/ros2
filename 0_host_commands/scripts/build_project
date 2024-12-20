@@ -43,6 +43,8 @@ else
   x86=""
 fi
 
+cp ${ACSL_ROS2_DIR}/1_launcher/launch_build.sh ${ACSL_WORK_DIR}/1_launcher/
+chmod a+x ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
 if [[ ${OPT} == "" ]]; then
   TAG=image_${PROJECT}${TARGET}${x86}
   exist_image=$(docker images kasekiguchi/acsl-common:${TAG} | grep ${TAG})
@@ -61,7 +63,6 @@ if [[ ${OPT} == "" ]]; then
     drm build
   fi
 else
-  echo "!!!!!!!!!!!!!!!!!!"
   dup --image=${OPT} build $packs
   dlogs build
   gecho "docker commit : from build container to ${OPT} tagged image"
@@ -69,3 +70,4 @@ else
   gecho "remove build container"
   drm build
 fi
+rm -f ${ACSL_WORK_DIR}/1_launcher/launch_build.sh

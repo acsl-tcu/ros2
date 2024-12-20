@@ -45,13 +45,14 @@ if [ $# -ge 1 ]; then
     exist_image=$(docker images kasekiguchi/acsl-common:${TAG%_x86}${x86} | grep ${TAG%_x86}${x86})
     echo "image : $exist_image "
     if [[ -z $exist_image ]]; then
+      echo "== image ${TAG%_x86}${x86} does NOT exists. Use image_${PROJECT}${TARGET}${x86} alternatively."
       TAG=image_${PROJECT}${TARGET}${x86}
     else
       echo "== image ${TAG%_x86}${x86} exists"
       TAG=${TAG}${x86}
     fi
     if [[ ${OPT} == "" ]]; then
-      echo "TAG : $TAG"
+      echo "TAG : $TAG : 1 : $1"
       echo $launch_args
       # CONTAINER_NAME=$1
       ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
