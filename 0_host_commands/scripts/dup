@@ -3,7 +3,7 @@
 # Example :
 # dup tokyu debug : run tokyu project in debug mode
 # dup dev : simple up acsl-common:build
-
+echo "===========     in dup       ==========================="
 OPT=""
 # while (($# > 0)); do
 #   case $1 in
