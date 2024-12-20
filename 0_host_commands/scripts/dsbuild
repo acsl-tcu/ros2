@@ -7,9 +7,7 @@
 # sequential build for docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 
-echo "##########################################"
-gecho "Build image_${PROJECT}${TARGET}"
-echo "##########################################"
+gecho "DSBUILD: Build image_${PROJECT}${TARGET}"
 if [ $# -ge 1 ]; then
   ITAG=$1
   if [ $# -eq 1 ]; then

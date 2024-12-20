@@ -8,6 +8,7 @@
 cd $ACSL_ROS2_DIR/4_docker/
 echo $(pwd)
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
+
 if [ $# -eq 3 ]; then
   ITAG=$1
   OTAG=$2
@@ -31,5 +32,5 @@ if [[ -n $fx86 ]]; then
   ITAG=${ITAG%_x86}_x86
   OTAG=${OTAG%_x86}_x86
 fi
-gecho "build $OTAG FROM $ITAG using dockerfile.$DF"
+gecho "DBUILD: build $OTAG FROM $ITAG using dockerfile.$DF"
 ITAG=$ITAG OTAG=$OTAG DF=$DF docker compose build image_build --no-cache

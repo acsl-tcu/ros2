@@ -3,7 +3,6 @@
 # Example :
 # dup tokyu debug : run tokyu project in debug mode
 # dup dev : simple up acsl-common:build
-echo "===========     in dup       ==========================="
 OPT=""
 # while (($# > 0)); do
 #   case $1 in
@@ -25,11 +24,9 @@ if [[ "$1" =~ ^--image= ]]; then
   shift
 fi
 
-echo "=========================="
-echo $OPT
-
 cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
+gecho "DUP: $OPT"
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     $ACSL_WORK_DIR/project_launch${TARGET}.sh

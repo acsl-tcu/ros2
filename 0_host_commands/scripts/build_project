@@ -30,7 +30,7 @@ else
   packs=$(my_packages)
 fi
 
-gecho "build own ros packages"
+gecho "BUILD_PROJECT: build own ros packages"
 #PACK=$(my_packages)
 #LARGS=$PACK ROS_LAUNCH=launch_build.sh TAG=${1} docker compose up common -d
 #echo $TAG
