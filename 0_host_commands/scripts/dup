@@ -47,6 +47,7 @@ if [ $# -ge 1 ]; then
     if [[ -z $exist_image ]]; then
       TAG=image_${PROJECT}${TARGET}${x86}
     else
+      echo "== image ${TAG%_x86}${x86} exists"
       TAG=${TAG}${x86}
     fi
     if [[ ${OPT} == "" ]]; then
