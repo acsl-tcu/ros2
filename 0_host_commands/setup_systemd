@@ -8,7 +8,9 @@ sed -i "s|ACSL_ROS2_EXEC|$1|" project_launch.service
 # Setting systemd
 sudo chmod a+x project_launch.sh
 sudo chmod a+x project_launch.service
-sudo rm /etc/systemd/system/project_launch.service
+if [[ -f /etc/systemd/system/project_launch.service ]]; then
+  sudo rm /etc/systemd/system/project_launch.service
+fi
 sudo mv project_launch.service /etc/systemd/system
 sudo systemctl daemon-reload
 sudo systemctl enable project_launch
