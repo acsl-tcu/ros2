@@ -1,7 +1,9 @@
 # Don't touch
 # git での管理用の工夫
-# homedir は setting.sh で実行環境でのホームディレクトリに置換したものをserviceとして登録
-# 詳細は setup.sh 参照
+# 以下の文字列は setup_systemd で実行環境での各パスに置換
+# ACSL_ROS2_WORK_DIR ：$ACSL_ROS2_DIRに設定されているフォルダ
+# ACSL_ROS2_EXEC :project_launch${TARGET}.sh の絶対パス
+# 詳細は setup_systemd 参照
 
 [Unit]
 Description=ros_launcher
