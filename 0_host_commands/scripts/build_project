@@ -2,25 +2,15 @@
 
 # #1 : project name
 # #2- : build target packages
+# [usage]
+# build_project ros_packages
+# build_project --image=image_name ros_packages
 
 OPT=""
-# while (($# > 0)); do
-#   case $1 in
-#   # ...
-#   -i | --image | --image=*)
 if [[ "$1" =~ ^--image= ]]; then
   OPT=$(echo $1 | sed -e 's/^--image=//')
   shift
 fi
-#     else
-#       OPT="$2"
-#       shift
-#     fi
-#     ;;
-#     # ...
-#   esac
-#   shift
-# done
 
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
@@ -31,10 +21,6 @@ else
 fi
 
 gecho "BUILD_PROJECT: build own ros packages"
-#PACK=$(my_packages)
-#LARGS=$PACK ROS_LAUNCH=launch_build.sh TAG=${1} docker compose up common -d
-#echo $TAG
-#TAG=${TAG} dup build $packs
 
 fx86=$(uname -a | grep x86)
 if [[ -n $fx86 ]]; then

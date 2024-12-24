@@ -1,24 +1,10 @@
 #! /usr/bin/bash
 # arg1 : target container_name,  arg2- (option) : argument for ros node launch
 # Example :
-# dup tokyu debug : run tokyu project in debug mode
-# dup dev : simple up acsl-common:build
+# dup acs tokyu debug : run tokyu project in debug mode
+# dup dev : simple up acsl-common:image_${PROJECT}${TARGET}
+
 OPT=""
-# while (($# > 0)); do
-#   case $1 in
-#   # ...
-#   -i | --image | --image=*)
-#     if [[ "$1" =~ ^--image= ]]; then
-#       OPT=$(echo $1 | sed -e 's/^--image=//')
-#     else
-#       OPT="$2"
-#       shift
-#     fi
-#     ;;
-#     # ...
-#   esac
-#   shift
-# done
 if [[ "$1" =~ ^--image= ]]; then
   OPT=$(echo $1 | sed -e 's/^--image=//')
   shift
@@ -55,12 +41,16 @@ if [ $# -ge 1 ]; then
       echo "TAG : $TAG : 1 : $1"
       echo $launch_args
       # CONTAINER_NAME=$1
+      if [[ $1 == "dev" ]]; then
+        cp $ACSL_ROS2_DIR/1_launcher/launch_dev.sh $ACSL_WORK_DIR/1_launcher/
+        chmod a+x $ACSL_WORK_DIR/1_launcher/launch_dev.sh
+      fi
       ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
       echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
       TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
+      rm -f $ACSL_WORK_DIR/1_launcher/launch_dev.sh
     else
       echo "TAG::${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
-      cp $ACSL_ROS2_DIR/1_launcher/launch_build.sh $ACSL_WORK_DIR/1_launcher/
       TAG=${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
     fi
   fi
