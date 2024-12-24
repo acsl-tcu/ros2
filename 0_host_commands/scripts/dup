@@ -48,7 +48,6 @@ if [ $# -ge 1 ]; then
       ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
       echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
       TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
-      rm -f $ACSL_WORK_DIR/1_launcher/launch_dev.sh
     else
       echo "TAG::${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
       TAG=${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d

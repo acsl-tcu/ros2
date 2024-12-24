@@ -50,4 +50,5 @@ if [ $# -eq 0 ]; then
 else
   exec $@
 fi
+rm -f $ACSL_WORK_DIR/1_launcher/launch_dev.sh
 stop_container_process
