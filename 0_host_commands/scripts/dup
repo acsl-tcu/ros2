@@ -9,8 +9,13 @@ if [[ "$1" =~ ^--image= ]]; then
   OPT=$(echo $1 | sed -e 's/^--image=//')
   shift
 fi
+compose="-f ${ACSL_ROS2_DIR}/4_docker/docker-compose.yml"
+if [[ "$1" =~ ^--compose= ]]; then
+  compose=$(echo $1 | sed -e 's/^--compose=//')
+  shift
+fi
 
-cd $ACSL_ROS2_DIR/4_docker
+#cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 gecho "DUP: $OPT : $1 : ${@:2:($# - 1)}"
 if [ $# -ge 1 ]; then
@@ -46,11 +51,11 @@ if [ $# -ge 1 ]; then
         chmod a+x $ACSL_WORK_DIR/1_launcher/launch_dev.sh
       fi
       ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
-      echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
-      TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
+      echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
+      TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
     else
-      echo "TAG::${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d"
-      TAG=${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose up common -d
+      echo "TAG::${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
+      TAG=${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
     fi
   fi
 fi
