@@ -9,10 +9,9 @@ if [[ "$1" =~ ^--image= ]]; then
   OPT=$(echo $1 | sed -e 's/^--image=//')
   shift
 fi
-compose="-f ${ACSL_ROS2_DIR}/4_docker/docker-compose.yml"
-if [[ "$1" =~ ^--compose= ]]; then
-  compose=$(echo $1 | sed -e 's/^--compose=//')
-  shift
+compose=" -f ${ACSL_ROS2_DIR}/4_docker/docker-compose.yml "
+if [[ -f ${ACSL_WORK_DIR}/docker-compose.${PROJECT}${TARGET} ]]; then
+  compose=${compose}" -f ${ACSL_WORK_DIR}/docker-compose.${PROJECT}${TARGET} "
 fi
 
 #cd $ACSL_ROS2_DIR/4_docker
