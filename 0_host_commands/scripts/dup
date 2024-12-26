@@ -13,6 +13,8 @@ compose=" -f ${ACSL_ROS2_DIR}/4_docker/docker-compose.yml "
 local_compose=$(ls . | grep ${ACSL_WORK_DIR}/docker-compose.${1})
 if [[ -n ${local_compose} ]]; then
   compose=${compose}" -f ${ACSL_WORK_DIR}/docker-compose.${1} "
+  echo ":::::::::::::::::::::::::::::"
+  echo ${compose}
 fi
 
 #cd $ACSL_ROS2_DIR/4_docker
