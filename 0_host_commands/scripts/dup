@@ -10,8 +10,9 @@ if [[ "$1" =~ ^--image= ]]; then
   shift
 fi
 compose=" -f ${ACSL_ROS2_DIR}/4_docker/docker-compose.yml "
-if [[ -f ${ACSL_WORK_DIR}/docker-compose.${PROJECT}${TARGET} ]]; then
-  compose=${compose}" -f ${ACSL_WORK_DIR}/docker-compose.${PROJECT}${TARGET} "
+local_compose=$(ls . | grep ${ACSL_WORK_DIR}/docker-compose.${1})
+if [[ -n ${local_compose} ]]; then
+  compose=${compose}" -f ${ACSL_WORK_DIR}/docker-compose.${1} "
 fi
 
 #cd $ACSL_ROS2_DIR/4_docker
@@ -41,21 +42,22 @@ if [ $# -ge 1 ]; then
       echo "== image ${TAG%_x86}${x86} exists"
       TAG=${TAG}${x86}
     fi
-    if [[ ${OPT} == "" ]]; then
-      echo "TAG : $TAG : 1 : $1"
-      echo $launch_args
-      # CONTAINER_NAME=$1
-      if [[ $1 == "dev" ]]; then
-        cp $ACSL_ROS2_DIR/1_launcher/launch_dev.sh $ACSL_WORK_DIR/1_launcher/
-        chmod a+x $ACSL_WORK_DIR/1_launcher/launch_dev.sh
-      fi
-      ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
-      echo "TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
-      TAG=$TAG CONTAINER_NAME=$1 COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
-    else
-      echo "TAG::${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
-      TAG=${OPT} CONTAINER_NAME=build COMPOSE_PROJECT_NAME=$1_${PROJECT} ROS_LAUNCH=launch_build.sh LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
+    # CONTAINER_NAME=$1
+    if [[ $1 == "dev" ]]; then
+      cp $ACSL_ROS2_DIR/1_launcher/launch_dev.sh $ACSL_WORK_DIR/1_launcher/
+      chmod a+x $ACSL_WORK_DIR/1_launcher/launch_dev.sh
     fi
+    ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
+    if [[ ${OPT} == "" ]]; then
+      CONTAINER_NAME=$1
+    else
+      TAG=${OPT}
+      ROS_LAUNCH=launch_build.sh
+      CONTAINER_NAME=build
+    fi
+
+    echo "TAG=$TAG CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
+    TAG=${TAG} CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
   fi
 fi
 
