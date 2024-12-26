@@ -10,7 +10,7 @@ if [[ "$1" =~ ^--image= ]]; then
   shift
 fi
 compose=" -f ${ACSL_ROS2_DIR}/4_docker/docker-compose.yml "
-local_compose=$(ls . | grep ${ACSL_WORK_DIR}/docker-compose.${1})
+local_compose=$(ls . | grep docker-compose.${1})
 if [[ -n ${local_compose} ]]; then
   compose=${compose}" -f ${ACSL_WORK_DIR}/docker-compose.${1} "
   echo ":::::::::::::::::::::::::::::"
