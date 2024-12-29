@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   python3-colcon-mixin \
   python3-rosdep \
   python3-vcstool \
+  dumb-init \
+  && ln -s /usr/bin/dumb-init /usr/local/bin/ \
   && rm -rf /var/lib/apt/lists/*
 
 # bootstrap rosdep

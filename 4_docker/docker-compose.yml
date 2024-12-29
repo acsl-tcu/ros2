@@ -46,8 +46,11 @@ services:
       - TAG=${TAG:-image_${PROJECT}${TARGET}}
       - HOST_USER=$LOGNAME # deprecate 
       - ROS_DOMAIN_ID=${ROS_DOMAIN_ID} # set project unique id
+      # WSL
       - DISPLAY=$DISPLAY
-
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
+      - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
+      - PULSE_SERVER=$PULSE_SERVER
     # ports:
     #   - 8080:8080
       
@@ -60,6 +63,9 @@ services:
       - vscode-server:/root/.vscode-server # VScode setting (preserve VScode extension)
       - $ACSL_WORK_DIR/2_ros_packages:/root/ros2_ws/src/ros_packages
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
+      # WSL
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
 
     # ▼ use host network to connect external device
     #  Caution : set ROS_DOMAIN_ID properly to separate the namespace in ROS2
