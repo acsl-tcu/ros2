@@ -2,7 +2,7 @@
 
 if [ ${HOSTNAME:0:1} == "D" ]; then
   cd /root/ros2_ws/
-  source install/setup.bash
+  source /opt/ros/${ROS_DISTRO}/setup.bash
   if [ $# -ge 1 ]; then
     com=$@
   else
