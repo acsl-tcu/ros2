@@ -46,7 +46,7 @@ services:
       - TAG=${TAG:-image_${PROJECT}${TARGET}}
       - HOST_USER=$LOGNAME # deprecate 
       - ROS_DOMAIN_ID=${ROS_DOMAIN_ID} # set project unique id
-      # WSL
+      # WSL : thanks to : https://dev.classmethod.jp/articles/wsl2-docker-gui-app-windows-display/
       - DISPLAY=$DISPLAY
       - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
       - XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR
