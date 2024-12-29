@@ -8,7 +8,7 @@ else
   STAG=$1
   ETAG=$2
 fi
-echo "Build image from $STAG to $ETAG"
+echo "Build image from container:$STAG to tag:$ETAG"
 
 if [ ${HOSTNAME:0:1} == "D" ]; then
   ssh -o StrictHostKeyChecking=no $HOST_USER@172.17.0.1 "docker commit $STAG kasekiguchi/acsl-common:$ETAG"
