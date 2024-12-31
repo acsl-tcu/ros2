@@ -43,7 +43,7 @@ if [[ ${OPT} == "" ]]; then
     # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
 
     dlogs build_${PROJECT}${TARGET}
-    gecho "docker commit : from build_${PROJECT}${TARGET} container to image_${TAG} tagged image"
+    gecho "docker commit :: from build_${PROJECT}${TARGET} container to image_${TAG} tagged image"
     dcommit build_${PROJECT}${TARGET} ${TAG}
     gecho "remove build_${PROJECT}${TARGET} container"
     drm build_${PROJECT}${TARGET}
