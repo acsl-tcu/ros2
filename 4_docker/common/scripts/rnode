@@ -10,7 +10,7 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   fi
   ros2 node $com
 else
-  str=$(dps | grep dev${TARGET} | grep Up)
+  str=$(dps | grep "dev${TARGET} " | grep Up)
   if [[ -z $str ]]; then
     dup dev${TARGET}
   fi
