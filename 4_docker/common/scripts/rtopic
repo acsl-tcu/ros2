@@ -12,7 +12,7 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
 else
   str=$(dps | grep dev | grep Up)
   if [[ -z $str ]]; then
-    dup dev_${TARGET}
+    dup dev${TARGET}
   fi
-  COMPOSE_PROJECT_NAME=dev_${PROJECT}${TARGET} docker compose exec common /common/scripts/rtopic $@
+  COMPOSE_PROJECT_NAME=dev${TARGET}_${PROJECT}${TARGET} docker compose exec common /common/scripts/rtopic $@
 fi
