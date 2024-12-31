@@ -42,18 +42,18 @@ if [[ ${OPT} == "" ]]; then
     # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
     # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
 
-    dlogs build
-    gecho "docker commit : from build container to image_${TAG} tagged image"
-    dcommit build ${TAG}
-    gecho "remove build container"
-    drm build
+    dlogs build_${PROJECT}${TARGET}
+    gecho "docker commit : from build_${PROJECT}${TARGET} container to image_${TAG} tagged image"
+    dcommit build_${PROJECT}${TARGET} ${TAG}
+    gecho "remove build_${PROJECT}${TARGET} container"
+    drm build_${PROJECT}${TARGET}
   fi
 else
   dup --image=${OPT} build $packs
-  dlogs build
-  gecho "docker commit : from build container to ${OPT} tagged image"
-  dcommit build ${OPT}
-  gecho "remove build container"
-  drm build
+  dlogs build_${PROJECT}${TARGET}
+  gecho "docker commit : from build_${PROJECT}${TARGET} container to ${OPT} tagged image"
+  dcommit build_${PROJECT}${TARGET} ${OPT}
+  gecho "remove build_${PROJECT}${TARGET} container"
+  drm build_${PROJECT}${TARGET}
 fi
 rm -f ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
