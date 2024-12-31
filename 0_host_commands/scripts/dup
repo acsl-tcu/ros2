@@ -57,7 +57,7 @@ if [ $# -ge 1 ]; then
       cp $ACSL_ROS2_DIR/1_launcher/launch_dev.sh $ACSL_WORK_DIR/1_launcher/
       chmod a+x $ACSL_WORK_DIR/1_launcher/launch_dev.sh
       ROS_LAUNCH=launch_dev.sh
-      CONTAINER_NAME=dev
+      CONTAINER_NAME=dev${TARGET}
     fi
 
     echo "TAG=$TAG CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
