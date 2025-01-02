@@ -1,2 +1,2 @@
 #! /usr/bin/bash
-rcmd topic $@
+rcmd ros2 topic $@
