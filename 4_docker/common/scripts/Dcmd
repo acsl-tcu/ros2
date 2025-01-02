@@ -15,6 +15,7 @@ else
     container=${str}
     cmd=${@:2:($# - 1)}
   fi
-  echo ${container,,}_${PROJECT,,}${TARGET,,}
+  gecho IN:${container,,}
+  #_${PROJECT,,}${TARGET,,}
   COMPOSE_PROJECT_NAME=${container,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/scripts/Dcmd ${cmd[@]}
 fi
