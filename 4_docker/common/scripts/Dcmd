@@ -6,12 +6,13 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   $@
 else
   #str=$(dps | grep "dev${TARGET} " | grep Up)
-  str=$(dps | grep $1 | grep Up)
+  str=$(dps | grep -v Exited | awk '{print $NF}' | sed -e 's/NAMES//' | grep ${1}$)
   if [[ -z $str ]]; then
     dup dev${TARGET}
     container=dev${TARGET}
   else
     container=${str}
   fi
-  COMPOSE_PROJECT_NAME=${container}_${PROJECT}${TARGET} docker compose exec common /common/scripts/Dcmd $@
+  echo ${container,,}_${PROJECT,,}${TARGET,,}
+  COMPOSE_PROJECT_NAME=${container,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/scripts/Dcmd $@
 fi
