@@ -1,0 +1,17 @@
+#! /usr/bin/bash
+# = exec $@ in container
+if [ ${HOSTNAME:0:1} == "D" ]; then
+  cd /root/ros2_ws/
+  source /opt/ros/${ROS_DISTRO}/setup.bash
+  $@
+else
+  #str=$(dps | grep "dev${TARGET} " | grep Up)
+  str=$(dps | grep $1 | grep Up)
+  if [[ -z $str ]]; then
+    dup dev${TARGET}
+    container=dev${TARGET}
+  else
+    container=${str}
+  fi
+  COMPOSE_PROJECT_NAME=${container}_${PROJECT}${TARGET} docker compose exec common /common/scripts/Dcmd $@
+fi

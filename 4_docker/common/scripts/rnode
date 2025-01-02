@@ -1,3 +1,3 @@
 #! /usr/bin/bash
 # = ros2 node $@  in container
-rcmd ros2 node $@
+Dcmd ros2 node $@
