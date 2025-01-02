@@ -30,6 +30,13 @@ set_bashrc "export PROJECT" $PROJECT
 set_bashrc "export TARGET" $TARGET
 set_bashrc "export ACSL_ROS2_DIR" $ACSL_ROS2_DIR
 set_bashrc "export ACSL_WORK_DIR" $ACSL_WORK_DIR
+fx86=$(uname -a | grep x86)
+if [[ -n $fx86 ]]; then
+  x86="_x86"
+else
+  x86=""
+fi
+set_bashrc "export x86" $x86
 if [ $# -eq 3 ]; then
   RID=$3
 else

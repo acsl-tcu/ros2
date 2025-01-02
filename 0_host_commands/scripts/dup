@@ -27,12 +27,6 @@ if [ $# -ge 1 ]; then
     launch_args=${@:2:($# - 1)}
     #LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose --env-file envfiles/env.$1 up common -d
     TAG=$1
-    fx86=$(uname -a | grep x86)
-    if [[ -n $fx86 ]]; then
-      x86="_x86"
-    else
-      x86=""
-    fi
     echo "===== TAG: ${TAG%_x86}${x86} ===="
 
     exist_image=$(docker images kasekiguchi/acsl-common:${TAG%_x86}${x86} | grep ${TAG%_x86}${x86})
