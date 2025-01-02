@@ -1,5 +1,6 @@
 #! /usr/bin/bash
 # = exec $@ in container
+# https://docs.ros.org/en/jazzy/Tutorials/Beginner-CLI-Tools/Using-Rqt-Console/Using-Rqt-Console.html
 if [ ${HOSTNAME:0:1} == "D" ]; then
   cd /root/ros2_ws/
   source /opt/ros/${ROS_DISTRO}/setup.bash
