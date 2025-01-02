@@ -15,6 +15,7 @@ else
     container=${str}
     cmd=${@:2:($# - 1)}
   fi
+  source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
   gecho IN:${container,,}
   #_${PROJECT,,}${TARGET,,}
   COMPOSE_PROJECT_NAME=${container,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/scripts/Dcmd ${cmd[@]}
