@@ -1,4 +1,5 @@
 #! /usr/bin/bash
+# this works only in docker container
 . /opt/ros/${ROS_DISTRO}/setup.bash
 
 cd /root/ros2_ws/

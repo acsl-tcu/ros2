@@ -1,18 +1,3 @@
 #! /usr/bin/bash
 # = ros2 node $@  in container
-if [ ${HOSTNAME:0:1} == "D" ]; then
-  cd /root/ros2_ws/
-  source /opt/ros/${ROS_DISTRO}/setup.bash
-  if [ $# -ge 1 ]; then
-    com=$@
-  else
-    com=list
-  fi
-  ros2 node $com
-else
-  str=$(dps | grep "dev${TARGET} " | grep Up)
-  if [[ -z $str ]]; then
-    dup dev${TARGET}
-  fi
-  COMPOSE_PROJECT_NAME=dev${TARGET}_${PROJECT}${TARGET} docker compose exec common /common/scripts/rnode $@
-fi
+rcmd node $@
