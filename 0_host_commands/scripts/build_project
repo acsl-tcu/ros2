@@ -22,13 +22,6 @@ fi
 
 gecho "BUILD_PROJECT: build own ros packages"
 
-fx86=$(uname -a | grep x86)
-if [[ -n $fx86 ]]; then
-  x86="_x86"
-else
-  x86=""
-fi
-
 cp ${ACSL_ROS2_DIR}/1_launcher/launch_build.sh ${ACSL_WORK_DIR}/1_launcher/
 chmod a+x ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
 if [[ ${OPT} == "" ]]; then

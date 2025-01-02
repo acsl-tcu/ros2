@@ -10,8 +10,10 @@ else
   if [[ -z $str ]]; then
     dup dev${TARGET}
     container=dev${TARGET}
+    cmd=$@
   else
     container=${str}
+    cmd=${@:2:($# - 1)}
   fi
   echo ${container,,}_${PROJECT,,}${TARGET,,}
   COMPOSE_PROJECT_NAME=${container,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/scripts/Dcmd $@
