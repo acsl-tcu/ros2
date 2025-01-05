@@ -25,7 +25,7 @@ else
   echo "chmod in ${ACSL_WORK_DIR}"
   chmod -R a+x $ACSL_WORK_DIR/1_launcher/
   chmod -R a+x $ACSL_WORK_DIR/project_launch*
-  sed -i "s|\$ACSL_ROS2_DIR|$ACSL_ROS2_DIR/4_docker|g" project_launch*.sh
+  sed -i "s|\$ACSL_ROS2_DIR|$ACSL_ROS2_DIR/4_docker|g" $ACSL_WORK_DIR/project_launch*.sh
 
   if [[ -v $bashrc ]]; then
     echo "chmod in ${ACSL_ROS2_DIR}"
