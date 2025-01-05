@@ -26,7 +26,6 @@ services:
     image: kasekiguchi/acsl-common:${TAG:-base}
     hostname: D${HOSTNAME:-rp5}
     container_name: ${CONTAINER_NAME:-dev}
-    # user: "${UID}" # user id をhostと揃える
     shm_size: '4096m' # メモリサイズ
     entrypoint:
       [
@@ -64,8 +63,6 @@ services:
       - vscode-server:/root/.vscode-server # VScode setting (preserve VScode extension)
       - $ACSL_WORK_DIR/2_ros_packages:/root/ros2_ws/src/ros_packages
       - /var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket
-      # Ubuntu
-      - /tmp/.X11-unix/X0:/tmp/.X11-unix/X0
       # WSL
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /mnt/wslg:/mnt/wslg
