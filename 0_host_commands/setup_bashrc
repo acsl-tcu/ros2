@@ -37,6 +37,10 @@ else
   x86=""
 fi
 set_bashrc "export x86" $x86
+
+set_bashrc "export DISPLAY" ":0.0"
+set_bashrc "xhost +local:"
+
 if [ $# -eq 3 ]; then
   RID=$3
 else
