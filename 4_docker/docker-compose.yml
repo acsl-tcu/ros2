@@ -26,7 +26,7 @@ services:
     image: kasekiguchi/acsl-common:${TAG:-base}
     hostname: D${HOSTNAME:-rp5}
     container_name: ${CONTAINER_NAME:-dev}
-    user: "${UID}" # user id をhostと揃える
+    # user: "${UID}" # user id をhostと揃える
     shm_size: '4096m' # メモリサイズ
     entrypoint:
       [
