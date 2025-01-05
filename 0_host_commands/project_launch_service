@@ -10,7 +10,7 @@ Description=ros_launcher
 After=syslog.target
 
 [Service]
-Type=exec
+Type=oneshot
 WorkingDirectory=ACSL_ROS2_WORK_DIR
 ExecStart=ACSL_ROS2_EXEC
 

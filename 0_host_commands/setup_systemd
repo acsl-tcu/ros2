@@ -10,7 +10,7 @@ sed -e "s|ACSL_ROS2_WORK_DIR|$ACSL_ROS2_DIR/4_docker|g" $ACSL_ROS2_DIR/0_host_co
 sed -i "s|ACSL_ROS2_EXEC|$1|" project_launch.service
 sudo chmod a+x project_launch.service
 
-sed -i "s|\$ACSL_ROS2_DIR|$ACSL_ROS2_DIR/4_docker|g" project_launch*.sh
+sed -i "s|\$ACSL_ROS2_DIR|$ACSL_ROS2_DIR|g" project_launch*.sh
 sudo chmod a+x project_launch*.sh
 if [[ -f /etc/systemd/system/project_launch.service ]]; then
   sudo rm /etc/systemd/system/project_launch.service
