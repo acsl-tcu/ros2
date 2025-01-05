@@ -6,7 +6,7 @@
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 gecho "Setup SYSTEMD"
 
-sed -e "s|ACSL_ROS2_WORK_DIR|$ACSL_ROS2_DIR/4_docker|g" $ACSL_ROS2_DIR/0_host_commands/project_launch_service >project_launch.service
+sed -e "s|ACSL_WORK_DIR|$ACSL_WORK_DIR|g" $ACSL_ROS2_DIR/0_host_commands/project_launch_service >project_launch.service
 sed -i "s|ACSL_ROS2_EXEC|$1|" project_launch.service
 sudo chmod a+x project_launch.service
 
