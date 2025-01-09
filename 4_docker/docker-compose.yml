@@ -76,7 +76,7 @@ services:
       resources:
         limits:
           cpus: '1'
-          memory: 1g          
+          memory: 4g          
     device_cgroup_rules:
       # a (all), c (char), or b (block) 
       # https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
