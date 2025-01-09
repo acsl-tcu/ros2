@@ -26,7 +26,6 @@ services:
     image: kasekiguchi/acsl-common:${TAG:-base}
     hostname: D${HOSTNAME:-rp5}
     container_name: ${CONTAINER_NAME:-dev}
-    shm_size: '4096m' # メモリサイズ
     entrypoint:
       [
         "/usr/local/bin/dumb-init", # for quick stop of the container
