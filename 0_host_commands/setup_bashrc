@@ -30,6 +30,7 @@ set_bashrc "export PROJECT" $PROJECT
 set_bashrc "export TARGET" $TARGET
 set_bashrc "export ACSL_ROS2_DIR" $ACSL_ROS2_DIR
 set_bashrc "export ACSL_WORK_DIR" $ACSL_WORK_DIR
+set_bashrc "ROS_AUTOMATIC_DISCOVERY_RANGE" "SUBNET"
 fx86=$(uname -a | grep x86)
 if [[ -n $fx86 ]]; then
   x86="_x86"
