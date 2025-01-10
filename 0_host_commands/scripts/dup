@@ -19,7 +19,7 @@ fi
 
 #cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
-gecho "DUP: $OPT : $1 : ${@:2:($# - 1)}"
+gecho "DUP ${ROS_DOMAIN_ID}: $OPT : $1 : ${@:2:($# - 1)}"
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     $ACSL_WORK_DIR/project_launch${TARGET}.sh
