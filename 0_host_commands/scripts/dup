@@ -32,8 +32,13 @@ if [ $# -ge 1 ]; then
     exist_image=$(docker images kasekiguchi/acsl-common:${TAG%_x86}${x86} | grep ${TAG%_x86}${x86})
     echo "image : $exist_image "
     if [[ -z $exist_image ]]; then
-      echo "== image ${TAG%_x86}${x86} does NOT exists. Use image_${PROJECT}${TARGET}${x86} alternatively."
-      TAG=image_${PROJECT}${TARGET}${x86}
+      exist_image=$(docker images kasekiguchi/acsl-common | grep image_${PROJECT}${TARGET}${x86})
+      if [[ -z $exist_image ]]; then
+        TAG=base${x86}
+      else
+        TAG=image_${PROJECT}${TARGET}${x86}
+      fi
+      echo "== image ${TAG%_x86}${x86} does NOT exists. Use ${TAG} alternatively."
     else
       echo "== image ${TAG%_x86}${x86} exists"
       TAG=${TAG}${x86}
