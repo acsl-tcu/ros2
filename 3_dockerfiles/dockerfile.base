@@ -17,6 +17,7 @@ FROM ros2 as tools
 RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
 	ros-${ROS_DISTRO}-generate-parameter-library \
 	build-essential \
+	iproute2 \
 	cmake \
 	ca-certificates \
 	usbutils i2c-tools \

@@ -1,4 +1,5 @@
 # dockerfileではない。
+# Deprecate
 # ロケールのセットアップ
 docker pull ubuntu:18.04
 docker run --name base1804 -it ubuntu:18.04 bash
