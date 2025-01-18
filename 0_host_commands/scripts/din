@@ -1,4 +1,5 @@
 #! /usr/bin/bash
 
-cd $ACSL_ROS2_DIR/4_docker
-COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} docker compose exec common bash
+# cd $ACSL_ROS2_DIR/4_docker
+# COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} docker compose exec common bash
+docker compose exec -it ${1,,} bash
