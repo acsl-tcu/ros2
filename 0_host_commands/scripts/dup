@@ -49,8 +49,6 @@ if [ $# -ge 1 ]; then
       CONTAINER_NAME=$1
     else
       TAG=${OPT}
-      ROS_LAUNCH=launch_build.sh
-      CONTAINER_NAME=build
     fi
     if [[ $1 == "dev" ]]; then
       cp $ACSL_ROS2_DIR/1_launcher/launch_dev.sh $ACSL_WORK_DIR/1_launcher/

@@ -1,0 +1,12 @@
+#! /usr/bin/bash
+
+echo $1
+echo "git push : $PROJECT"
+echo "Caution: change of project_launch file will be removed."
+cd $ACSL_WORK_DIR
+git checkout project_launch*
+git add .
+git commit -m "Commit from WORKING DIR by $USER@$HOSTNAME: $1"
+
+chmod -R a+x $ACSL_WORK_DIR/project_launch*
+sed -i "s|\$ACSL_ROS2_DIR|$ACSL_ROS2_DIR|g" $ACSL_WORK_DIR/project_launch*.sh

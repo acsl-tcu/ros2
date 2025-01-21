@@ -1,15 +1,16 @@
 #! /usr/bin/bash
-
-# #1 : project name
-# #2- : build target packages
+# colcon build in target image container
+# target image : image_${PROJECT} or indicate by --image=target_image
 # [usage]
+# $@ : build target packages
 # build_project ros_packages
 # build_project --image=image_name ros_packages
 
-OPT=""
 if [[ "$1" =~ ^--image= ]]; then
-  OPT=$(echo $1 | sed -e 's/^--image=//')
+  TAG=$(echo $1 | sed -e 's/^--image=//')
   shift
+else
+  TAG=image_${PROJECT}${TARGET}${x86}
 fi
 
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
@@ -24,29 +25,19 @@ gecho "BUILD_PROJECT: build own ros packages"
 
 cp ${ACSL_ROS2_DIR}/1_launcher/launch_build.sh ${ACSL_WORK_DIR}/1_launcher/
 chmod a+x ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
-if [[ ${OPT} == "" ]]; then
-  TAG=image_${PROJECT}${TARGET}${x86}
-  exist_image=$(docker images kasekiguchi/acsl-common:${TAG} | grep ${TAG})
-  if [[ -z $exist_image ]]; then
-    recho "create ${TAG} image first by
+
+exist_image=$(docker images kasekiguchi/acsl-common:${TAG} | grep ${TAG})
+if [[ -z $exist_image ]]; then
+  recho "create ${TAG} image first by
   dsbuild"
-  else
-    dup build $packs
-    # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
-    # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
-    gecho "DLOGS: "
-    dlogs build
-    gecho "docker commit :: from build container to image_${TAG} tagged image"
-    dcommit build ${TAG}
-    gecho "remove build container"
-    drm build
-  fi
 else
-  dup --image=${OPT} build $packs
+  dup --image=${TAG} build $packs
+  # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
+  # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
   gecho "DLOGS: "
   dlogs build
-  gecho "DCOMMIT : from build container to ${OPT} tagged image"
-  dcommit build ${OPT}
+  gecho "docker commit :: from build container to ${TAG} tagged image"
+  dcommit build ${TAG}
   gecho "remove build container"
   drm build
 fi
