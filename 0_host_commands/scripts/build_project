@@ -21,7 +21,7 @@ else
   packs=$(my_packages)
 fi
 
-gecho "BUILD_PROJECT: build own ros packages"
+gecho "BUILD_PROJECT: build own ros packages on ${TAG}"
 
 cp ${ACSL_ROS2_DIR}/1_launcher/launch_build.sh ${ACSL_WORK_DIR}/1_launcher/
 chmod a+x ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
