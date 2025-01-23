@@ -43,13 +43,14 @@ if [ $# -ge 1 ]; then
       echo "== image ${cimage} exists"
       TAG=${cimage}
     fi
-    # CONTAINER_NAME=$1
     ROS_LAUNCH=$(ls -v $ACSL_WORK_DIR/1_launcher/ | grep launch_$1 | fmt | awk '{print $NF}')
-    if [[ ${OPT} == "" ]]; then
-      CONTAINER_NAME=$1
-    else
-      TAG=${OPT}
-    fi
+
+    CONTAINER_NAME=$1
+    # if [[ ${OPT} == "" ]]; then
+    #   CONTAINER_NAME=$1
+    # else
+    #   TAG=${OPT}
+    # fi
     if [[ $1 == "dev" ]]; then
       cp $ACSL_ROS2_DIR/1_launcher/launch_dev.sh $ACSL_WORK_DIR/1_launcher/
       chmod a+x $ACSL_WORK_DIR/1_launcher/launch_dev.sh
