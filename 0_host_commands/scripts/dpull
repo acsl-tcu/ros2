@@ -5,4 +5,5 @@ if [[ -z $fx86 ]]; then
 else
   TAG=${1%_x86}_x86
 fi
+echo ${TAG}
 docker pull kasekiguchi/acsl-common:$TAG
