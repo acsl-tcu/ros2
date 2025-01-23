@@ -5,7 +5,7 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   cd /root/ros2_ws/
   source /opt/ros/${ROS_DISTRO}/setup.bash
   echo $@
-  $@
+  eval "$@"
 else
   #str=$(dps | grep "dev${TARGET} " | grep Up)
   str=$(dps | grep -v Exited | awk '{print $NF}' | sed -e 's/NAMES//' | grep ${1})
