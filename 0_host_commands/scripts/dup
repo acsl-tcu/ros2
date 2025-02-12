@@ -58,8 +58,14 @@ if [ $# -ge 1 ]; then
       CONTAINER_NAME=dev${TARGET}
     fi
 
-    echo "TAG=$TAG CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
-    TAG=${TAG} CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
+    str=$(dps | grep -v Exited | awk '{print $NF}' | sed -e 's/NAMES//' | grep ${1})
+    if [[ -z $str ]]; then
+      echo "TAG=$TAG CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
+      TAG=${TAG} CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
+    else
+      COMPOSE_PROJECT_NAME=${container,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args docker compose ${compose} up common -d
+      #exec common /common/scripts/Dcmd ${cmd[@]}
+    fi
   fi
 fi
 
