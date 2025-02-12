@@ -63,8 +63,8 @@ if [ $# -ge 1 ]; then
       echo "TAG=$TAG CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d"
       TAG=${TAG} CONTAINER_NAME=${CONTAINER_NAME} COMPOSE_PROJECT_NAME=${1,,}_${PROJECT,,}${TARGET,,} ROS_LAUNCH=$ROS_LAUNCH LARGS=$launch_args HOSTNAME=$(hostname | sed -e 's/-/_/g') docker compose ${compose} up common -d
     else
-      echo "COMPOSE_PROJECT_NAME=${container,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/ros_launch/$ROS_LAUNCH $launch_args"
-      COMPOSE_PROJECT_NAME=${container,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/ros_launch/$ROS_LAUNCH $launch_args
+      echo "COMPOSE_PROJECT_NAME=${CONTAINER_NAME,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/ros_launch/$ROS_LAUNCH $launch_args"
+      COMPOSE_PROJECT_NAME=${CONTAINER_NAME,,}_${PROJECT,,}${TARGET,,} docker compose exec common /common/ros_launcher/$ROS_LAUNCH $launch_args
       #exec common /common/scripts/Dcmd ${cmd[@]}
     fi
   fi
