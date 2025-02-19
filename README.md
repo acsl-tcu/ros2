@@ -77,8 +77,9 @@ graph TD;
 各ハードウェアの基本セットアップを以下からおこなう。
 （imageの設定、dockerの設定まで）
 
-[Raspberry Pi5](hardware_setup/README_raspberry_pi_5.md)<br>
-[Ubuntu/WLS2](hardware_setup/README_WSL2.md)
+[ARM (Raspberry Pi)](hardware_setup/README_raspberry_pi_5.md)<br>
+[x86（Ubuntu/WLS2）](hardware_setup/README_WSL2.md)<br>
+JetPackにはデフォルトで入っているので不要（useraddぐらいは必要かも？）
 
 ### Git clone
 
