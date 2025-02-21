@@ -16,6 +16,7 @@ chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/scripts
 chmod -R a+x $ACSL_ROS2_DIR/4_docker/common/scripts
 
 if [[ -z $(cat $ACSL_ROS2_DIR/bashrc | grep ORGPATH) ]]; then
+  cp ~/.bashrc $ACSL_ROS2_DIR/bashrc
   $ACSL_ROS2_DIR/0_host_commands/scripts/set_bashrc "export ORGPATH" $PATH
 else
   source $ACSL_ROS2_DIR/bashrc
