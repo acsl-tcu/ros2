@@ -16,7 +16,6 @@ chmod -R a+x $ACSL_ROS2_DIR/0_host_commands/scripts
 chmod -R a+x $ACSL_ROS2_DIR/4_docker/common/scripts
 
 if [[ -z $(cat $ACSL_ROS2_DIR/bashrc | grep ORGPATH) ]]; then
-  cp ~/.bashrc $ACSL_ROS2_DIR/bashrc
   $ACSL_ROS2_DIR/0_host_commands/scripts/set_bashrc "export ORGPATH" $PATH
 else
   source $ACSL_ROS2_DIR/bashrc
@@ -52,5 +51,6 @@ set_bashrc "export ROS_DOMAIN_ID" $RID
 export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[00m\]\[\033[01;36m\]\h\[\033[00m\][${PROJECT}${RID}]:\[\033[01;34m\]\w\$\[\033[00m\] "
 set_bashrc "PS1" ${PS1}
 
-gecho "Do following command 
-source $ACSL_ROS2_DIR/bashrc"
+# gecho "Do following command
+# source $ACSL_ROS2_DIR/bashrc"
+cat ~/.bashrc $ACSL_ROS2_DIR/bashrc >tmp && mv tmp $ACSL_ROS2_DIR/bashrc && rm -f tmp
