@@ -10,7 +10,7 @@ echo "export PATH=/common/scripts:${PATH}" >>/root/.bashrc
 # Setup to colorize bash
 sed -i -e "s/#force_color_prompt=yes/force_color_prompt=yes/" /root/.bashrc
 # prompt color change in container
-echo "PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[00m\]\[\033[01;36m\]\h\[\033[00m\][${PROJECT}]:\[\033[01;34m\]\w\$\[\033[00m\] '" >>~/.bashrc
+echo "PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\[\033[00m\]\[\033[01;33m\]\h\[\033[00m\]:\[\033[01;34m\]\w\$\[\033[00m\] '" >>~/.bashrc
 
 # assets commands
 echo "alias home='source home.sh'" >>~/.bashrc
