@@ -13,7 +13,6 @@ After=syslog.target
 Type=oneshot
 WorkingDirectory=ACSL_WORK_DIR
 ExecStart=ACSL_ROS2_EXEC
-#ExecStart=/bin/bash -c 'source ACSL_ROS2_DIR/bashrc && exec ACSL_ROS2_EXEC'
-EnvironmentFile=ACSL_ROS2_DIR/bashrc
+EnvironmentFile=ACSL_ROS2_DIR/bashrc_systemd
 [Install]
 WantedBy = multi-user.target
