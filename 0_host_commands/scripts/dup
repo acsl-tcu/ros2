@@ -19,6 +19,8 @@ fi
 
 #cd $ACSL_ROS2_DIR/4_docker
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
+source $ACSL_ROS2_DIR/bashrc
+
 gecho "DUP ${ROS_DOMAIN_ID}: $OPT : $1 : ${@:2:($# - 1)}"
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
