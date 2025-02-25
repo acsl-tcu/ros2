@@ -8,7 +8,7 @@ gecho "Setup SYSTEMD"
 
 sed -e "s|ACSL_WORK_DIR|$ACSL_WORK_DIR|g" $ACSL_ROS2_DIR/0_host_commands/project_launch_service >project_launch.service
 sed -i "s|ACSL_ROS2_EXEC|$1|" project_launch.service
-sed -i "s|ACSL_ROS2_DIR|/$ASCL_ROS2_DIR|" project_launch.service
+sed -i "s|ACSL_ROS2_DIR|/$ACSL_ROS2_DIR|" project_launch.service
 sudo chmod a+x project_launch.service
 
 sed -i "s|\$ACSL_ROS2_DIR|$ACSL_ROS2_DIR|g" project_launch*.sh
