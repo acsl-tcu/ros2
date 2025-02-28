@@ -56,7 +56,7 @@ services:
 
     volumes:
       # bind "host folder":"docker folder"
-      - ~/.ssh:/root/.ssh
+      - ${HOME}/.ssh:/root/.ssh
       - ./common:/common # common scripts
       - $ACSL_WORK_DIR/1_launcher:/common/ros_launcher
       - /dev:/dev # GPIO and USB devices
