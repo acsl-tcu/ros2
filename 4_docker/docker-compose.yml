@@ -46,6 +46,7 @@ services:
       - TAG=${TAG:-image_${PROJECT}${TARGET}}
       - HOST_USER=$LOGNAME # deprecate 
       - ROS_DOMAIN_ID=${ROS_DOMAIN_ID} # set project unique id
+      - USER=$USER
       # WSL : thanks to : https://dev.classmethod.jp/articles/wsl2-docker-gui-app-windows-display/
       - DISPLAY=${DISPLAY}
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-0}
@@ -56,7 +57,7 @@ services:
 
     volumes:
       # bind "host folder":"docker folder"
-      - /home/sekiguchi/.ssh:/root/.ssh
+      - ${HOME}/.ssh:/root/.ssh
       - ./common:/common # common scripts
       - $ACSL_WORK_DIR/1_launcher:/common/ros_launcher
       - /dev:/dev # GPIO and USB devices
