@@ -3,7 +3,7 @@
 # Example :
 # dup acs tokyu debug : run tokyu project in debug mode
 # dup dev : simple up acsl-common:image_${PROJECT}${TARGET}
-
+source $ACSL_ROS2_DIR/bashrc
 OPT=""
 if [[ "$1" =~ ^--image= ]]; then
   OPT=$(echo $1 | sed -e 's/^--image=//')
