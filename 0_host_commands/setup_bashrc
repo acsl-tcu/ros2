@@ -42,7 +42,7 @@ set_bashrc "export x86" $x86
 set_bashrc "export DISPLAY" $DISPLAY
 set_bashrc "xhost +local: > /dev/null 2>&1"
 
-if [ $# -eq 3 ]; then
+if [ $# -ge 3 ]; then
   RID=$3
 else
   RID=$(cat $ACSL_ROS2_DIR/ros2_id_list | grep -w $PROJECT | awk '{print $NF}')
