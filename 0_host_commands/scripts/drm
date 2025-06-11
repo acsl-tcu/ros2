@@ -1,11 +1,11 @@
 #! /usr/bin/bash
 
-generate_rosbag(){
+generate_rosbag() {
   docker exec record bash -c "/common/scripts/rosbag_kill"
   start_time=$(date +%s)
 
   while true; do
-    output=$(docker exec record bash -c "ls /common/ros_launcher/rosbags/current/ | grep yaml")
+    output=$($ACSL_ROS2_DIR/4_docker/common/scripts/dlogs record | grep stopped)
 
     # 条件1: 出力に"OK"が含まれるか
     if [[ -e "$output" ]]; then
