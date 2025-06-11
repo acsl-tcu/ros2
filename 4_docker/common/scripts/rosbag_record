@@ -18,6 +18,11 @@ if [ "$NUM_TO_DELETE" -gt 0 ]; then
   done
 fi
 
+if [[ $# -eq 0 ]]; then
+  target=(-a)
+else
+  target=("$@")
+fi
 # 最終的に録画を開始
 echo "Recording to $SAVE_PATH"
-ros2 bag record -o "$SAVE_PATH" "$@"
+ros2 bag record -o "$SAVE_PATH" "$target"
