@@ -1,11 +1,38 @@
 #! /usr/bin/bash
+
+generate_rosbag(){
+  docker exec record bash -c "/common/scripts/rosbag_kill"
+  start_time=$(date +%s)
+
+  while true; do
+    output=$(docker exec record bash -c "ls /common/ros_launcher/rosbags/current/ | grep yaml")
+
+    # 条件1: 出力に"OK"が含まれるか
+    if [[ -e "$output" ]]; then
+      echo "Complete rosbag recording"
+      break
+    fi
+
+    # 条件2: 30秒経過したか
+    current_time=$(date +%s)
+    elapsed=$((current_time - start_time))
+    if [[ $elapsed -ge 30 ]]; then
+      echo "Timeout after 30 seconds"
+      break
+    fi
+
+    # 必要に応じて少し待機（例：1秒）
+    sleep 1
+  done
+}
+
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     containers=$(docker ps -a | awk '{print $NF}' | sed -e 's/NAMES//')
     for item in "${containers[@]}"; do
       if [[ "$item" == "record" ]]; then
-        docker exec record bash -c "rosbag_kill"
+        generate_rosbag
         break
       fi
     done
@@ -14,6 +41,12 @@ if [ $# -ge 1 ]; then
     recho "delete all container"
     docker rm $containers
   else
+    for item in "${@}"; do
+      if [[ "$item" == "record" ]]; then
+        generate_rosbag
+        break
+      fi
+    done
     gecho "stop containers: $@"
     docker stop $@
     recho "delete containers: $@"

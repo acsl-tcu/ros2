@@ -5,15 +5,14 @@ ARCHIVE_DIR="/common/ros_launcher/rosbags"
 DIR_NAME="$(date "+%y%m%d_%H%M")"
 echo $DIR_NAME
 SAVE_PATH="$ARCHIVE_DIR/$DIR_NAME"
-#mkdir -p "$SAVE_PATH"
 
-# archive整理：最新15件を超えたら古い順から削除
+# archive整理：最新 5件を超えたら古い順から削除
 ALL_ARCH_DIRS=($(ls "$ARCHIVE_DIR"))
 NUM_TO_DELETE=$((${#ALL_ARCH_DIRS[@]} - 5))
 
 if [ "$NUM_TO_DELETE" -gt 0 ]; then
   for ((i = 0; i < NUM_TO_DELETE; i++)); do
-    DEL_DIR="${ALL_ARCH_DIRS[${#ALL_ARCH_DIRS[@]} - $i]}"
+    DEL_DIR="${ALL_ARCH_DIRS[$i]}"
     echo "Deleting old archive bag '$DEL_DIR'"
     rm -rf "$ARCHIVE_DIR/$DEL_DIR"
   done
