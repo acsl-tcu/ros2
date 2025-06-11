@@ -6,7 +6,7 @@ generate_rosbag() {
 
   while true; do
     output=$($ACSL_ROS2_DIR/0_host_commands/scripts/dlogs record | grep stopped)
-
+    echo $($ACSL_ROS2_DIR/0_host_commands/scripts/dlogs record)
     # 条件1: 出力に"OK"が含まれるか
     if [[ -e "$output" ]]; then
       echo "Complete rosbag recording"
@@ -20,9 +20,10 @@ generate_rosbag() {
       echo "Timeout after 30 seconds"
       break
     fi
-
+    echo ${current_time- start_time} "seconds elapsed, waiting for rosbag to stop..."
     # 必要に応じて少し待機（例：1秒）
     sleep 1
+
   done
 }
 
