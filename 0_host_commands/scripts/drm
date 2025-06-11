@@ -3,6 +3,12 @@ source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     containers=$(docker ps -a | awk '{print $NF}' | sed -e 's/NAMES//')
+    for item in "${containers[@]}"; do
+      if [[ "$item" == "record" ]]; then
+        docker exec record bash -c "rosbag_kill"
+        break
+      fi
+    done
     gecho "stop containers"
     docker stop $containers
     recho "delete all container"
