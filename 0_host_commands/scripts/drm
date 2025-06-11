@@ -8,7 +8,7 @@ generate_rosbag() {
     output=$($ACSL_ROS2_DIR/0_host_commands/scripts/dlogs record | grep stopped)
     echo "$output"
     # 条件1: 出力に"OK"が含まれるか
-    if [[ -e "$output" ]]; then
+    if [[ -n "$output" ]]; then
       echo "Complete rosbag recording"
       break
     fi
