@@ -1,6 +1,5 @@
 #!/bin/bash
 pkill -SIGINT -f 'ros2 bag record'
-rm -f $ARCHIVE_DIR/current
 ARCHIVE_DIR="/common/ros_launcher/rosbags"
 ALL_ARCH_DIRS=($(ls "$ARCHIVE_DIR"))
 SAVE_PATH="${ALL_ARCH_DIRS[0]}"
