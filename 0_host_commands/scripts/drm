@@ -32,7 +32,7 @@ if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     containers=$(docker ps -a | awk '{print $NF}' | sed -e 's/NAMES//')
     for item in "${containers[@]}"; do
-      if [[ "$item" == "record" ]]; then
+      if [[ "$item"=="record" ]]; then
         generate_rosbag
         break
       fi
@@ -43,7 +43,7 @@ if [ $# -ge 1 ]; then
     docker rm $containers
   else
     for item in "${@}"; do
-      if [[ "$item" == "record" ]]; then
+      if [[ "$item"=="record" ]]; then
         generate_rosbag
         break
       fi
