@@ -1,4 +1,6 @@
 #! /usr/bin/bash
+# [Usage]
+# get_data 192.168.100.112
 function open_pdf {
   current_dir=$(pwd)
   if [[ "$1" != "" ]]; then
@@ -14,8 +16,8 @@ function open_pdf {
 }
 
 [[ "$1" =~ ^[0-9]+$ ]]; then
-  echo "scp $USER@192.168.100.${1}:$ACSL_ROS2_DIR/2_ros_packages/acs/acs/Log/latest/acsdata.pkl ."
-  scp $USER@192.168.100.${1}:$ACSL_ROS2_DIR/2_ros_packages/acs/acs/Log/latest/acsdata.pkl .
+  echo "scp $USER@${1}:$ACSL_ROS2_DIR/2_ros_packages/acs/acs/Log/latest/acsdata.pkl ."
+  scp $USER@${1}:$ACSL_ROS2_DIR/2_ros_packages/acs/acs/Log/latest/acsdata.pkl .
 fi
 
 echo "python3 $ACSL_ROS2_DIR/2_ros_packages/acs/acs/Plotter/sample.py"
