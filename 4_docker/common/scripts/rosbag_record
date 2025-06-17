@@ -21,7 +21,7 @@ fi
 if [[ $# -eq 0 ]]; then
   target=(-a)
 else
-  target=("$@")
+  target=$@
 fi
 # 最終的に録画を開始
 echo "Recording to $SAVE_PATH"
