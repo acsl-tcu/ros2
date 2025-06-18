@@ -25,4 +25,5 @@ else
 fi
 # 最終的に録画を開始
 echo "Recording to $SAVE_PATH"
+echo "${target[@]}"
 ros2 bag record -o "$SAVE_PATH" "${target[@]}"
