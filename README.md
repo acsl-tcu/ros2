@@ -79,7 +79,11 @@ graph TD;
 
 [ARM (Raspberry Pi)](hardware_setup/README_raspberry_pi_5.md)<br>
 [x86（Ubuntu/WLS2）](hardware_setup/README_WSL2.md)<br>
-JetPackにはデフォルトで入っているので不要（useraddぐらいは必要かも？）
+JetPackにはデフォルトで入っているのでuserをdockerグループに追加する。
+```
+sudo usermod -aG docker $USER
+su - $USER
+```
 
 ### Git clone
 
