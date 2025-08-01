@@ -3,7 +3,7 @@
 ############################################
 ## SETUP
 ## SETUP OF BASE IMAGES
-ARG BASE_IMAGE
+# ARG BASE_IMAGE
 ARG ROS_DISTRO="humble"
 FROM ros:humble as tools
 
