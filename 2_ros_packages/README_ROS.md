@@ -21,6 +21,7 @@ ROSシステムの実行は DOCKER 上のUbuntu 環境内を想定している�
 ```
 
 ROSパッケージの詳細
+
 |フォルダ名（パッケージ名）|概要|
 |:--|:--|
 | [acs](./acs/README.md) | 自律制御のメインシステムを管理しているパッケージ|
@@ -237,7 +238,7 @@ ros2 bag record -o [filename] /scan_front /scan_behind /rover_odo /tf --ros-args
 
 ```bash:bash
 cd <ROS2_ws>
-colcon build --symlink-install --packages-select <package_name>
+colcon build source install/setup.bash<package_name>
   --symlink-install : 可能ならシンボリックリンクで
   --packages-select : 指定したパッケージのみのビルド
 ```
