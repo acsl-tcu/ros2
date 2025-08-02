@@ -31,7 +31,7 @@ services:
     container_name: ${CONTAINER_NAME:-dev}
     entrypoint:
       [
-        "/usr/local/bin/dumb-init", # for quick stop of the container
+        "/root/.venv/bin/dumb-init", # for quick stop of the container
         "/common/scripts/entrypoint.sh" # execute at the container up
       ]
     command:

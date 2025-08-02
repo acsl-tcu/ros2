@@ -84,21 +84,25 @@ RUN apt update && apt install -y \
   python3-transforms3d \
   python3-rosdep \
   python3-bluez \
-  python3-pip
+  python3-pip \
+  python3-venv
 
+RUN cd /root \
+  &&  python3 -m venv .venv
 # for jazzy
 #RUN pip install -U --break-system-packages \ 
-# RUN pip install -U \
-#   pymavlink\
-#   pip-review \
-#   whill \
-#   vl53l1x \
-#   l293d \
-#   pygame \
-#   dumb-init \
-#   bluepy \
-#   && apt autoremove -y \
-#   && apt clean \
-#   && rm -rf /var/lib/apt/lists/* 
+RUN source /root/.venv/bin/activate \
+  && pip install -U \
+  pymavlink\
+  pip-review \
+  whill \
+  vl53l1x \
+  l293d \
+  pygame \
+  dumb-init \
+  bluepy \
+  && apt autoremove -y \
+  && apt clean \
+  && rm -rf /var/lib/apt/lists/* 
 
 RUN mkdir -p ~/ros2_ws/src 
