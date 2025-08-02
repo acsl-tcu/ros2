@@ -33,4 +33,4 @@ if [[ -n $fx86 ]]; then
   OTAG=${OTAG%_x86}_x86
 fi
 gecho "DBUILD: build $OTAG FROM $ITAG using dockerfile.$DF"
-ITAG=$ITAG OTAG=$OTAG DF=$DF docker compose build image_build --no-cache
+ITAG=$ITAG OTAG=$OTAG DF=$DF docker compose build image_build # --no-cache
