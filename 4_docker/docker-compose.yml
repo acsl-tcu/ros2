@@ -54,7 +54,7 @@ services:
       - ACSL_WORK_DIR=$ACSL_WORK_DIR
       - x86=$x86
       - HOST_PATH=$PATH
-      - RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+      - RMW_IMPLEMENTATION=rmw_${RMW:-cyclonedds}_cpp
       # WSL : thanks to : https://dev.classmethod.jp/articles/wsl2-docker-gui-app-windows-display/
       - DISPLAY=${DISPLAY}
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-0}
