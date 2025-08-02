@@ -9,8 +9,8 @@ if [ $# -eq 0 ]; then
   echo "[Usage] arguments number <= 3"
   echo "dbuild  : build image_${PROJECT}${TARGET} from base image using dockerfile.build"
   echo "dbuild drone : build image_drone from base image using dockerfile.build ( verbose )"
-  echo "dbuild A B : build image B from image A using dockerfile.build"
-  echo "dbuild A B DF : build image B from image A using DF"
+  echo "dbuild A B : build image B from image/tag A using dockerfile.build"
+  echo "dbuild A B DF : build image B from image/tag A using DF"
 else
   if [ $# -eq 3 ]; then
     ITAG=$1
@@ -36,6 +36,14 @@ else
   if [[ -e $ACSL_WORK_DIR/3_dockerfiles${TARGET}/dockerfile.${DF} ]]; then
     DF=$ACSL_WORK_DIR/3_dockerfiles${TARGET}/dockerfile.${DF}
   fi
-  gecho "DBUILD: build tag:$OTAG FROM tag:$ITAG using $DF"
-  ITAG=$ITAG OTAG=$OTAG DF=$DF docker compose build image_build # --no-cache
+  ftag=$(docker images --format '{{.Repository}}:{{.Tag}}' | grep "^kasekiguchi/acsl-common:$ITAG")
+  if [[ -n $ftag ]]; then
+    BASE_IMAGE=kasekiguchi/acsl-common:$ITAG
+  fi
+  ftag=$(docker images --format '{{.Repository}}:{{.Tag}}' | grep "^$ITAG")
+  if [[ -n $ftag ]]; then
+    BASE_IMAGE=$ITAG
+  fi
+  gecho "DBUILD: build tag:$OTAG FROM $BASE_IMAGE using $DF"
+  BASE_IMAGE=$BASE_IMAGE OTAG=$OTAG DF=$DF docker compose build image_build # --no-cache
 fi
