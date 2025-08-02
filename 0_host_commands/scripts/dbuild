@@ -45,5 +45,6 @@ else
     BASE_IMAGE=$ITAG
   fi
   gecho "DBUILD: build tag:$OTAG FROM $BASE_IMAGE using $DF"
-  BASE_IMAGE=$BASE_IMAGE OTAG=$OTAG DF=$DF docker compose build image_build # --no-cache
+  BASE_IMAGE=$BASE_IMAGE OTAG=$OTAG DF=$DF docker compose build image_build
+  # --no-cache
 fi
