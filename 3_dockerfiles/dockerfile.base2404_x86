@@ -2,7 +2,9 @@
 # generated from docker_images_ros2/create_ros_image.Dockerfile.em
 # https://github.com/osrf/docker_images/blob/0038f1c3a11aa0fc573d698b39ab5c204aad5a40/ros/jazzy/ubuntu/noble/ros-base/Dockerfile
 # docker build . -t kasekiguchi/acsl-common:base2404 -f dockerfile.base2404 --no-cache
-FROM ros:jazzy-ros-core-noble
+ARG ROS_DISTRO="jazzy"
+# FROM ros:jazzy-ros-core-noble
+FROM ros:jazzy
 
 # install bootstrap tools
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -32,4 +34,10 @@ RUN colcon mixin add default \
 # install ros2 packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
   ros-jazzy-ros-base=0.11.0-1* \
+  ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
+  ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+  ros-${ROS_DISTRO}-rqt-tf-tree \
+  ros-${ROS_DISTRO}-xacro \
   && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p ~/ros2_ws/src 
