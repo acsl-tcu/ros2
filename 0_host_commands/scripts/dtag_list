@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+REPO=$1
+URL="https://registry.hub.docker.com/v2/repositories/${REPO}/tags?page_size=100"
+
+while [ -n "$URL" ]; do
+  RESP=$(curl -s "$URL")
+  echo "$RESP" | jq -r '.results[].name'
+  URL=$(echo "$RESP" | jq -r '.next')
+done
