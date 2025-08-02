@@ -36,6 +36,6 @@ else
   if [[ -e $ACSL_WORK_DIR/3_dockerfiles${TARGET}/dockerfile.${DF} ]]; then
     DF=$ACSL_WORK_DIR/3_dockerfiles${TARGET}/dockerfile.${DF}
   fi
-  gecho "DBUILD: build $OTAG FROM $ITAG using $DF"
+  gecho "DBUILD: build tag:$OTAG FROM tag:$ITAG using $DF"
   ITAG=$ITAG OTAG=$OTAG DF=$DF docker compose build image_build # --no-cache
 fi
