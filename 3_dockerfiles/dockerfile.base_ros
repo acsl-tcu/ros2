@@ -91,7 +91,7 @@ RUN cd /root \
   &&  python3 -m venv .venv
 # for jazzy
 #RUN pip install -U --break-system-packages \ 
-RUN source /root/.venv/bin/activate \
+RUN . /root/.venv/bin/activate \
   && pip install -U \
   pymavlink\
   pip-review \
