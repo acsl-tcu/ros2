@@ -9,11 +9,12 @@ services:
     image: kasekiguchi/acsl-common:${OTAG:-humble}
     build:
       context: .
+      pull_policy: never
       dockerfile: ${DF} # 実行するdockerfile指定
       #dockerfile: ${DOCKERFILE:-$ACSL_WORK_DIR/3_dockerfiles${TARGET}/dockerfile.${DF:-build}} # 実行するdockerfile指定      
       args:
         ROS_DISTRO: ${ROS_DISTRO:-humble} # ROS distribution
-        BASE_IMAGE: kasekiguchi/acsl-common:image_rf_robot_x86 # 元となるimage
+        BASE_IMAGE: ${BASE_IMAGE:-kasekiguchi/acsl-common:image_rf_robot_x86} # 元となるimage
         # for x86 : osrf/ros:humble-desktop
         # for arch : arm64v8/ros:humble
 
