@@ -7,7 +7,6 @@ services:
     # Example：TARGET_TAG=target TAG=output docker compose build common 
     #  kasekiguchi/acsl-common:target  =>  kasekiguchi/acsl-common:output
     image: kasekiguchi/acsl-common:${OTAG:-humble}
-    pull_policy: never
     build:
       context: .
       dockerfile: ${DF} # 実行するdockerfile指定
