@@ -30,6 +30,12 @@ else
     ITAG=${ITAG%_x86}_x86
     OTAG=${OTAG%_x86}_x86
   fi
-  gecho "DBUILD: build $OTAG FROM $ITAG using dockerfile.$DF"
+  if [[ -e $ACSL_ROS2_DIR/3_dockerfiles/dockerfile.${DF} ]]; then
+    DF=$ACSL_ROS2_DIR/3_dockerfiles/dockerfile.${DF}
+  fi
+  if [[ -e $ACSL_WORK_DIR/3_dockerfiles/dockerfile.${DF} ]]; then
+    DF=$ACSL_WORK_DIR/3_dockerfiles/dockerfile.${DF}
+  fi
+  gecho "DBUILD: build $OTAG FROM $ITAG using $DF"
   ITAG=$ITAG OTAG=$OTAG DF=$DF docker compose build image_build # --no-cache
 fi
