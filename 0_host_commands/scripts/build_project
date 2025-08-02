@@ -1,5 +1,5 @@
 #! /usr/bin/bash
-# colcon build in target image container
+# update the image by "colcon build" in target image container
 # target image : image_${PROJECT} or indicate by --image=target_image
 # [usage]
 # $@ : build target packages

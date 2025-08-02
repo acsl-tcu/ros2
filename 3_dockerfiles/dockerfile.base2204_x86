@@ -69,6 +69,7 @@ RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
 	ros-${ROS_DISTRO}-xacro \
 	ros-${ROS_DISTRO}-tf-transformations \
 	ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
+	ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
 	&& apt autoremove -y \
 	&& apt clean -y \
 	&& rm -rf /var/lib/apt/lists/* \
