@@ -4,40 +4,105 @@
 # docker build . -t kasekiguchi/acsl-common:base2404 -f dockerfile.base2404 --no-cache
 ARG ROS_DISTRO="jazzy"
 # FROM ros:jazzy-ros-core-noble
-FROM ros:jazzy
+FROM ros:jazzy as tools
 
-# install bootstrap tools
-RUN apt-get update && apt-get install --no-install-recommends -y \
+RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
+  ros-${ROS_DISTRO}-generate-parameter-library \
   build-essential \
-  iproute2 \  
+  iproute2 \
+  cmake \
+  ca-certificates \
+  usbutils i2c-tools \
+  apt-transport-https \
+  apt-utils\ 
+  software-properties-common \
+  pkg-config \
+  uuid-dev \
+  tk-dev \
+  bluez \
+  at \
+  ed \ 
+  unzip \
+  lsb-release \
+  curl \
   git \
-  python3-colcon-common-extensions \
-  python3-colcon-mixin \
-  python3-rosdep \
-  python3-vcstool \
-  dumb-init \
-  && ln -s /usr/bin/dumb-init /usr/local/bin/ \
-  && rm -rf /var/lib/apt/lists/*
-
-# bootstrap rosdep
-# RUN rosdep init && \
-#   rosdep update --rosdistro $ROS_DISTRO
-
-# setup colcon mixin and metadata
-RUN colcon mixin add default \
-  https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml && \
-  colcon mixin update && \
-  colcon metadata add default \
-  https://raw.githubusercontent.com/colcon/colcon-metadata-repository/master/index.yaml && \
-  colcon metadata update
-
-# install ros2 packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  ros-jazzy-ros-base=0.11.0-1* \
-  ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
-  ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+  gnupg \
+  joystick \
+  openssh-server \
+  language-pack-ja \
+  tzdata \
+  xserver-xorg \
+  ffmpeg \
+  libbz2-dev \
+  gpiod \
+  libbluetooth-dev \
+  libboost-python-dev \
+  libboost-thread-dev \
+  libdb-dev \
+  libffi-dev \
+  libgdbm-dev \
+  libglx-dev \
+  libgl-dev \
+  libgpiod-dev \
+  libgpiod-doc \
+  libgtk-3-dev \
+  libglfw3-dev  \
+  libgl1-mesa-dev \
+  libglu1-mesa-dev \
+  liblzma-dev \
+  libncursesw5-dev \
+  libreadline-dev \
+  libsqlite3-dev \
+  libssl-dev \
+  libusb-1.0-0 \
+  libusb-1.0-0-dev \
+  libusb-dev\
+  libudev-dev \
+  udev \
+  zlib1g-dev \
+  lv vim tmux fish \ 
+  ros-${ROS_DISTRO}-cv-bridge \
+  ros-${ROS_DISTRO}-image-transport \
+  ros-${ROS_DISTRO}-diagnostic-updater \
   ros-${ROS_DISTRO}-rqt-tf-tree \
   ros-${ROS_DISTRO}-xacro \
-  && rm -rf /var/lib/apt/lists/*
+  ros-${ROS_DISTRO}-tf-transformations \
+  ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
+  ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
+  && apt autoremove -y \
+  && apt clean -y \
+  && rm -rf /var/lib/apt/lists/* \
+  && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+FROM tools as ros2_py3
+RUN apt update && apt install -y \
+  python3-numpy \
+  python3-scipy \
+  python3-pandas \
+  python3-numexpr \
+  python3-matplotlib \
+  python3-serial \
+  python3-tk \
+  python3-smbus2 \
+  python3-pexpect \
+  python3-transforms3d \
+  python3-rosdep \
+  python3-bluez \
+  python3-pip
+
+# for jazzy
+#RUN pip install -U --break-system-packages \ 
+RUN pip install -U \
+  pymavlink\
+  pip-review \
+  whill \
+  vl53l1x \
+  l293d \
+  pygame \
+  dumb-init \
+  bluepy \
+  && apt autoremove -y \
+  && apt clean \
+  && rm -rf /var/lib/apt/lists/* 
 
 RUN mkdir -p ~/ros2_ws/src 
