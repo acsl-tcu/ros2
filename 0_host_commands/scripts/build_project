@@ -27,7 +27,7 @@ gecho "BUILD_PROJECT: build own ros packages on ${IMAGE}"
 cp ${ACSL_ROS2_DIR}/1_launcher/launch_build.sh ${ACSL_WORK_DIR}/1_launcher/
 chmod a+x ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
 
-exist_image=$(docker images ${image} | grep ${IMAGE})
+exist_image=$(docker images ${IMAGE} | grep ${IMAGE})
 if [[ -z $exist_image ]]; then
   recho "create ${IMAGE} image first by
   dsbuild"
