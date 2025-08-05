@@ -1,7 +1,8 @@
-docker pull ros:foxy
-docker run --name base2004 -it ros:foxy bash
+ARG ROS_DISTRO="foxy"
+FROM ros:foxy as tools
+# docker run --name base2004 -it ros:foxy bash
 
-apt update && apt install -y \
+RUN apt update && apt install -y \
   python3-numpy \
   python3-scipy \
   python3-pandas \
@@ -13,11 +14,11 @@ apt update && apt install -y \
   python3-rosdep \
   python3-pip
 
-pip3 install -U dumb-init \
+RUN pip3 install -U dumb-init \
   && apt autoremove -y \
   && apt clean \
   && rm -rf /var/lib/apt/lists/* 
 
-mkdir -p ~/ros2_ws/src 
+RUN mkdir -p ~/ros2_ws/src 
 
-docker commit base2004 kasekiguchi/acsl-common:base2004
+#docker commit base2004 kasekiguchi/acsl-common:base2004
