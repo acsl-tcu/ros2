@@ -35,11 +35,12 @@ else
   dup --image=${IMAGE} build $packs
   # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
   # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
+  packs_list=$(packs)
   gecho "DLOGS: "
-  dlogs build_${packs[0]}
-  gecho "docker commit :: from build_${packs[0]} container to ${IMAGE} tagged image"
-  dcommit build_${packs[0]} ${IMAGE}
-  gecho "remove build_${packs[0]} container"
-  drm build_${packs[0]}
+  dlogs build_${packs_list[0]}
+  gecho "docker commit :: from build_${packs_list[0]} container to ${IMAGE} tagged image"
+  dcommit build_${packs_list[0]} ${IMAGE}
+  gecho "remove build_${packs_list[0]} container"
+  drm build_${packs_list[0]}
 fi
 rm -f ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
