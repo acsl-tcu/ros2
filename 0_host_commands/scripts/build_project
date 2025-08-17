@@ -36,10 +36,10 @@ else
   # acsl-common:$TAG を build コンテナとしてcommon サービスで起動
   # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
   gecho "DLOGS: "
-  dlogs build
-  gecho "docker commit :: from build container to ${IMAGE} tagged image"
-  dcommit build ${IMAGE}
-  gecho "remove build container"
-  drm build
+  dlogs build_${packs[0]}
+  gecho "docker commit :: from build_${packs[0]} container to ${IMAGE} tagged image"
+  dcommit build_${packs[0]} ${IMAGE}
+  gecho "remove build_${packs[0]} container"
+  drm build_${packs[0]}
 fi
 rm -f ${ACSL_WORK_DIR}/1_launcher/launch_build.sh
