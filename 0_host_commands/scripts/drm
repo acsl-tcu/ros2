@@ -62,6 +62,7 @@ fi
 
 if [ $stop_flag == "true" ]; then
   ${ACSL_WORK_DIR}/stop${TARGET}
+  docker stop dev${TARGET}
   docker rm dev${TARGET}
 fi
 
