@@ -55,6 +55,7 @@ services:
       - x86=$x86
       - HOST_PATH=$PATH
       - RMW_IMPLEMENTATION=rmw_${RMW:-fastrtps}_cpp
+      - ROS_USE_SIM_TIME=${ROS_USE_SIM_TIME:-false}
       # WSL : thanks to : https://dev.classmethod.jp/articles/wsl2-docker-gui-app-windows-display/
       - DISPLAY=${DISPLAY}
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-0}
