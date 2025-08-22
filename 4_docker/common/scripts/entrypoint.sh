@@ -20,6 +20,8 @@ function stop_container_process() {
 trap 'stop_container_process' 15 2
 # trap for kill command and Ctrl+C
 
+source ~/.bashrc
+
 # container 作成時のみの設定
 setuped=$(cat /root/.bashrc | grep ROS_DOMAIN_ID)
 if [[ -z $setuped ]]; then
