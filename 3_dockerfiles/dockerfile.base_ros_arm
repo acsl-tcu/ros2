@@ -1,6 +1,6 @@
 # This is an auto generated Dockerfile for ros:ros-base
 ARG ROS_DISTRO
-FROM ros:${ROS_DISTRO} as tools
+FROM arm64v8/ros:${ROS_DISTRO} as tools
 
 RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
   ros-${ROS_DISTRO}-generate-parameter-library \
