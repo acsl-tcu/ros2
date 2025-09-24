@@ -3,4 +3,6 @@
 . /opt/ros/${ROS_DISTRO}/setup.bash
 
 cd /root/ros2_ws/
-colcon build --symlink-install --packages-select $@
+source /root/.venv/bin/activate
+source /opt/ros/${ROS_DISTRO}/setup.bash
+python3 -m colcon build --parallel-workers $(($(nproc)-1)) --cmake-clean-cache
