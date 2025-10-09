@@ -2,61 +2,20 @@
 ARG ROS_DISTRO
 FROM ros:${ROS_DISTRO} as tools
 
-RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
+# 1st apt
+RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   ros-${ROS_DISTRO}-generate-parameter-library \
-  build-essential \
-  iproute2 \
-  cmake \
-  ca-certificates \
-  usbutils i2c-tools \
-  apt-transport-https \
-  apt-utils\ 
-  software-properties-common \
-  pkg-config \
-  uuid-dev \
-  tk-dev \
-  bluez \
-  at \
-  ed \ 
-  unzip \
-  lsb-release \
-  curl \
-  git \
-  gnupg \
-  joystick \
-  openssh-server \
-  language-pack-ja \
-  tzdata \
-  xserver-xorg \
-  ffmpeg \
-  libbz2-dev \
-  gpiod \
-  libbluetooth-dev \
-  libboost-python-dev \
-  libboost-thread-dev \
-  libdb-dev \
-  libffi-dev \
-  libgdbm-dev \
-  libglx-dev \
-  libgl-dev \
-  libgpiod-dev \
-  libgpiod-doc \
-  libgtk-3-dev \
-  libglfw3-dev  \
-  libgl1-mesa-dev \
-  libglu1-mesa-dev \
-  liblzma-dev \
-  libncursesw5-dev \
-  libreadline-dev \
-  libsqlite3-dev \
-  libssl-dev \
-  libusb-1.0-0 \
-  libusb-1.0-0-dev \
-  libusb-dev\
-  libudev-dev \
-  udev \
-  zlib1g-dev \
-  lv vim tmux fish \ 
+  build-essential iproute2 cmake ca-certificates usbutils i2c-tools \
+  apt-transport-https apt-utils \
+  software-properties-common pkg-config uuid-dev tk-dev bluez at ed \
+  unzip lsb-release curl git gnupg joystick openssh-server \
+  language-pack-ja tzdata xserver-xorg ffmpeg libbz2-dev gpiod \
+  libbluetooth-dev libboost-python-dev libboost-thread-dev libdb-dev \
+  libffi-dev libgdbm-dev libglx-dev libgl-dev libgpiod-dev libgpiod-doc \
+  libgtk-3-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev \
+  liblzma-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev \
+  libusb-1.0-0 libusb-1.0-0-dev libusb-dev libudev-dev udev zlib1g-dev \
+  lv vim tmux fish \
   ros-${ROS_DISTRO}-desktop \
   ros-${ROS_DISTRO}-cv-bridge \
   ros-${ROS_DISTRO}-image-transport \
@@ -66,41 +25,33 @@ RUN apt update -y && DEBIAN_FRONTEND=noninteractive apt install -y \
   ros-${ROS_DISTRO}-tf-transformations \
   ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
   ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
-  && apt autoremove -y \
-  && apt clean -y \
-  && rm -rf /var/lib/apt/lists/* \
-  && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+ && apt-get autoremove -y \
+ && apt-get clean -y \
+ && rm -rf /var/lib/apt/lists/* \
+ && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 FROM tools as ros2_py3
-RUN apt update && apt install -y \
-  python3-numpy \
-  python3-scipy \
-  python3-pandas \
-  python3-numexpr \
-  python3-matplotlib \
-  python3-serial \
-  python3-tk \
-  python3-smbus2 \
-  python3-pexpect \
-  python3-transforms3d \
-  python3-rosdep \
-  python3-bluez \
-  python3-pip \
-  python3-venv
 
-RUN cd /root \
-  &&  python3 -m venv .venv
-# for jazzy
-#RUN pip install -U --break-system-packages \ 
-RUN . /root/.venv/bin/activate \
-  && pip install -U \
-  pymavlink\
-  pip-review \
-  whill \
-  vl53l1x \
-  l293d \
-  pygame \
-  dumb-init \
+# 2nd apt（非対話指定を忘れずに）
+RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  python3-numpy python3-scipy python3-pandas python3-numexpr \
+  python3-matplotlib python3-serial python3-tk python3-smbus2 \
+  python3-pexpect python3-transforms3d python3-rosdep python3-bluez \
+  python3-pip python3-venv \
+ && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+# venv 作成 + venv をデフォルトに
+ENV VIRTUAL_ENV=/root/.venv
+RUN python3 -m venv --system-site-packages "$VIRTUAL_ENV"
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# venv の pip を明示してアップデート & 追加パッケージ
+RUN python -m pip install --no-cache-dir -U pip setuptools wheel \
+ && python -m pip install --no-cache-dir \
+      pymavlink pip-review whill vl53l1x l293d pygame dumb-init bluepy
+
+RUN mkdir -p /root/ros2_ws/src
+
   bluepy \
   && apt autoremove -y \
   && apt clean \
