@@ -46,5 +46,6 @@ RUN python3 -m venv --system-site-packages "$VIRTUAL_ENV"
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # venv の pip を明示してアップデート & 追加パッケージ
-RUN python -m pip install --no-cache-dir -U pip setuptools wheel colcon-common-extensions dumb-init
+RUN source /root/.venv/bin/activate \
+&& python -m pip install --no-cache-dir -U pip setuptools wheel colcon-common-extensions dumb-init
 RUN mkdir -p /root/ros2_ws/src
