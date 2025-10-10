@@ -5,6 +5,7 @@ gecho "LAUNCH BUILD: ${ROS_DOMAIN_ID}"
 cd /root/ros2_ws
 source /opt/ros/$ROS_DISTRO/setup.bash
 which colcon
+colcon --version
 if [ $# -ge 1 ]; then
   echo " colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))"
 　/usr/bin/colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))
