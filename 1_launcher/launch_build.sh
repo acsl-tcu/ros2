@@ -10,13 +10,11 @@ PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.v
 VENV_SITE_PACKAGES="$VENV_PATH/lib/python$PYTHON_VERSION/site-packages"
 export PYTHONPATH="$VENV_SITE_PACKAGES:$PYTHONPATH"
 
-# python3 -m colcon だとエラーになる場合がある
-# colconの前にスペースを入れるのもダメ
 if [ $# -ge 1 ]; then
   echo " colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))"
-  colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))
+  python3 -m colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))
 else
   echo " colcon build --symlink-install --parallel-workers $(($(nproc) - 1))"
-  colcon build --symlink-install --parallel-workers $(($(nproc) - 1))
+  python3 -m colcon build --symlink-install --parallel-workers $(($(nproc) - 1))
 fi
 source install/setup.bash
