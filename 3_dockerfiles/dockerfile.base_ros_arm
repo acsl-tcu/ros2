@@ -25,10 +25,10 @@ RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   ros-${ROS_DISTRO}-tf-transformations \
   ros-${ROS_DISTRO}-rmw-cyclonedds-cpp \
   ros-${ROS_DISTRO}-rmw-fastrtps-cpp \
- && apt-get autoremove -y \
- && apt-get clean -y \
- && rm -rf /var/lib/apt/lists/* \
- && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+  && apt-get autoremove -y \
+  && apt-get clean -y \
+  && rm -rf /var/lib/apt/lists/* \
+  && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 FROM tools as ros2_py3
 
@@ -38,7 +38,7 @@ RUN apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   python3-matplotlib python3-serial python3-tk python3-smbus2 \
   python3-pexpect python3-transforms3d python3-rosdep python3-bluez \
   python3-pip python3-venv \
- && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+  && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # venv 作成 + venv をデフォルトに
 ENV VIRTUAL_ENV=/root/.venv
@@ -46,7 +46,7 @@ RUN python3 -m venv --system-site-packages "$VIRTUAL_ENV"
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 # venv の pip を明示してアップデート & 追加パッケージ
-RUN python -m pip install --no-cache-dir -U pip setuptools wheel colcon-common-extensions \
-&& pip install -U dumb-init
+RUN python -m pip install --no-cache-dir -U pip 'setuptools<68' wheel colcon-common-extensions \
+  && pip install -U dumb-init
 
 RUN mkdir -p /root/ros2_ws/src
