@@ -36,7 +36,7 @@ else
   # 中で　launch_build.sh　を実行し自作パッケージをcolcon buildする
   packs_list=($packs)
   gecho "DLOGS: "
-  dlogs build_${packs}
+  dlogs build
   gecho "docker commit :: from build container to ${IMAGE} tagged image"
   dcommit build ${IMAGE}
   gecho "remove build container"
