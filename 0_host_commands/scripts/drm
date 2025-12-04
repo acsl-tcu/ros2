@@ -46,7 +46,7 @@ if [ $# -ge 1 ]; then
       stop_flag="true"
       containers=$(${ACSL_WORK_DIR}/stop${TARGET} $containers)
     fi
-    gecho "stop containers"
+    gecho "stop containers $containers"
     docker stop $containers
     recho "delete all container"
     docker rm $containers
