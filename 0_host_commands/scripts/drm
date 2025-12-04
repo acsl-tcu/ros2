@@ -53,7 +53,7 @@ if [ $# -ge 1 ]; then
         break
       elif [[ "$item" == "${PROJECT}${TARGET}" && -f "${ACSL_WORK_DIR}/stop${TARGET}" ]]; then
         stop_flag="true"
-        # ${ACSL_WORK_DIR}/stop${TARGET}
+        ${ACSL_WORK_DIR}/stop${TARGET}
       fi
     done
     gecho "stop containers: $@"
@@ -63,9 +63,10 @@ if [ $# -ge 1 ]; then
   fi
 fi
 
-# if [ $stop_flag == "true" ]; then
-#   docker stop dev${TARGET}
-#   docker rm dev${TARGET}
-# fi
+if [ $stop_flag == "true" ]; then
+  ${ACSL_WORK_DIR}/stop${TARGET}
+  docker stop dev${TARGET}
+  docker rm dev${TARGET}
+fi
 
 dps
