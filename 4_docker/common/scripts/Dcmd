@@ -8,7 +8,7 @@ if [ ${HOSTNAME:0:1} == "D" ]; then
   eval "$@"
 else
   #str=$(dps | grep "dev${TARGET} " | grep Up)
-  str=$(dps | grep -v Exited | awk '{print $NF}' | sed -e 's/NAMES//' | grep ${1})
+  str=$(dps | grep -v Exited | awk '{print $NF}' | sed -e 's/NAMES//' | grep -s ${1})
   if [[ -z $str ]]; then
     dup dev${TARGET}
     container=dev${TARGET}
