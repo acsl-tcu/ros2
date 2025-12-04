@@ -11,6 +11,7 @@ ROS_DISTRO=${tmp[0]}
 ### Define the process when stopping the container
 function stop_container_process() {
   if [[ -f /common/scripts/stop${TARGET} ]]; then
+    echo "stop command active ==================="
     /common/scripts/stop${TARGET}
   fi
   # コンテナ内で生成されたファイルがroot権限になるのを防ぐ処理
