@@ -33,7 +33,7 @@ if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     if [[ -f "${ACSL_WORK_DIR}/stop${TARGET}" ]]; then
       stop_flag="true"
-      # ${ACSL_WORK_DIR}/stop${TARGET}
+      ${ACSL_WORK_DIR}/stop${TARGET}
     fi
     containers=$(docker ps -a | awk '{print $NF}' | sed -e 's/NAMES//')
     for item in ${containers[@]}; do
@@ -54,9 +54,9 @@ if [ $# -ge 1 ]; then
       if [[ "$item" == "record" ]]; then
         generate_rosbag
         break
-      elif [[ "$item" == "${PROJECT}${TARGET}" && -f "${ACSL_WORK_DIR}/stop${TARGET}" ]]; then
-        stop_flag="true"
-      fi
+      # elif [[ "$item" == "${PROJECT}${TARGET}" && -f "${ACSL_WORK_DIR}/stop${TARGET}" ]]; then
+      #   stop_flag="true"
+      # fi
     done
     gecho "stop containers: $@"
     docker stop $@
@@ -65,10 +65,10 @@ if [ $# -ge 1 ]; then
   fi
 fi
 
-if [ $stop_flag == "true" ]; then
-  ${ACSL_WORK_DIR}/stop${TARGET} $@
-  docker stop dev${TARGET}
-  docker rm dev${TARGET}
-fi
+# if [ $stop_flag == "true" ]; then
+#   ${ACSL_WORK_DIR}/stop${TARGET} $@
+#   docker stop dev${TARGET}
+#   docker rm dev${TARGET}
+# fi
 
 dps
