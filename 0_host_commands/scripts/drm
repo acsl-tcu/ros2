@@ -27,12 +27,10 @@ generate_rosbag() {
   done
 }
 
-stop_flag="false"
 source $ACSL_ROS2_DIR/4_docker/common/scripts/super_echo
 if [ $# -ge 1 ]; then
   if [ $1 = "all" ]; then
     if [[ -f "${ACSL_WORK_DIR}/stop${TARGET}" ]]; then
-      stop_flag="true"
       ${ACSL_WORK_DIR}/stop${TARGET}
     fi
     containers=$(docker ps -a | awk '{print $NF}' | sed -e 's/NAMES//')
@@ -42,9 +40,6 @@ if [ $# -ge 1 ]; then
         break
       fi
     done
-    if [[ -f "${ACSL_WORK_DIR}/stop${TARGET}" ]]; then
-      stop_flag="true"
-    fi
     gecho "stop containers $containers"
     docker stop $containers
     recho "delete all container"
@@ -54,9 +49,7 @@ if [ $# -ge 1 ]; then
       if [[ "$item" == "record" ]]; then
         generate_rosbag
         break
-      # elif [[ "$item" == "${PROJECT}${TARGET}" && -f "${ACSL_WORK_DIR}/stop${TARGET}" ]]; then
-      #   stop_flag="true"
-      # fi
+      fi
     done
     gecho "stop containers: $@"
     docker stop $@
@@ -64,11 +57,5 @@ if [ $# -ge 1 ]; then
     docker rm $@
   fi
 fi
-
-# if [ $stop_flag == "true" ]; then
-#   ${ACSL_WORK_DIR}/stop${TARGET} $@
-#   docker stop dev${TARGET}
-#   docker rm dev${TARGET}
-# fi
 
 dps
