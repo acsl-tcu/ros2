@@ -23,11 +23,9 @@ echo "++++++++++++++++++++++++++++++++++++++"
 
 if [ $# -ge 1 ]; then
   echo " colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))"
-  # python3 -m
-  colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))
+  python3 -m colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))
 else
   echo " colcon build --symlink-install --parallel-workers $(($(nproc) - 1))"
-  # python3 -m
-  colcon build --symlink-install --parallel-workers $(($(nproc) - 1))
+  python3 -m colcon build --symlink-install --parallel-workers $(($(nproc) - 1))
 fi
 source install/setup.bash
