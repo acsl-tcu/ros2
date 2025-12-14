@@ -7,6 +7,7 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 
 echo "====================================="
 which python3
+which colcon
 echo "++++++++++++++++++++++++++++++++++++++"
 
 VENV_PATH="/root/.venv"
