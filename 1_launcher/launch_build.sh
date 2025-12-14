@@ -5,6 +5,10 @@ gecho "LAUNCH BUILD: ${ROS_DOMAIN_ID}"
 cd /root/ros2_ws
 source /opt/ros/$ROS_DISTRO/setup.bash
 
+echo "====================================="
+which python3
+echo "++++++++++++++++++++++++++++++++++++++"
+
 VENV_PATH="/root/.venv"
 PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
 VENV_SITE_PACKAGES="$VENV_PATH/lib/python$PYTHON_VERSION/site-packages"

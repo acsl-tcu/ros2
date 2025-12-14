@@ -16,11 +16,18 @@ image_rf_robot などはbase イメージからプロジェクトのデプロイ
 ## ベースイメージの作成
 
 ```bash
-ROS_DISTRO=jazzy dbuild arm64v8/ros:jazzy jazzy  $ACSL_ROS2_DIR/3_dockerfiles/dockerfile.base_ros_x86
+acsl robot rf 44 robot # 何でも良いのでACSLプロジェクトをまずデプロイしその環境内で実行する。
+ROS_DISTRO=jazzy dbuild ros:jazzy jazzy  $ACSL_ROS2_DIR/3_dockerfiles/dockerfile.base_ros_x86
+dpush jazzy_x86
+ROS_DISTRO=humble dbuild ros:humble humble  $ACSL_ROS2_DIR/3_dockerfiles/dockerfile.base_ros_x86
+dpush humble_x86
+ROS_DISTRO=jazzy dbuild arm64v8/ros:jazzy jazzy  $ACSL_ROS2_DIR/3_dockerfiles/dockerfile.base_ros_arm
 dpush jazzy
+ROS_DISTRO=humble dbuild arm64v8/ros:humble humble  $ACSL_ROS2_DIR/3_dockerfiles/dockerfile.base_ros_arm
+dpush humble
 ```
 
-arm系のイメージを作るときはdockerfileを変える
+dbuildの第１引数としてイメージを指定しているが実際は使っておらず、dockerfile内でROS_DISTROとアーキテクチャから自動的に使用するイメージを選択している。i
 
 ### Third party imageを利用するとき
 
