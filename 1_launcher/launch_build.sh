@@ -8,12 +8,18 @@ source /opt/ros/$ROS_DISTRO/setup.bash
 echo "====================================="
 which python3
 which colcon
+pip show setuptools packaging
 echo "++++++++++++++++++++++++++++++++++++++"
 
 VENV_PATH="/root/.venv"
 PYTHON_VERSION=$(python3 -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
 VENV_SITE_PACKAGES="$VENV_PATH/lib/python$PYTHON_VERSION/site-packages"
 export PYTHONPATH="$VENV_SITE_PACKAGES:$PYTHONPATH"
+echo "====================================="
+which python3
+which colcon
+pip show setuptools packaging
+echo "++++++++++++++++++++++++++++++++++++++"
 
 if [ $# -ge 1 ]; then
   echo " colcon build --symlink-install --packages-select $@ --parallel-workers $(($(nproc) - 1))"
